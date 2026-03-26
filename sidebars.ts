@@ -2,7 +2,7 @@ import type {SidebarsConfig} from '@docusaurus/types';
 
 const sidebars: SidebarsConfig = {
   docsSidebar: [
-    'intro',
+    'index',
     {
       type: 'category',
       label: 'Getting started',
