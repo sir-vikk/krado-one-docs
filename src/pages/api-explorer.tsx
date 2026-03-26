@@ -1,4 +1,5 @@
 import Layout from '@theme/Layout';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import React, { useEffect, useState } from 'react';
 
 type SwaggerUIComponent = React.ComponentType<{
@@ -8,6 +9,7 @@ type SwaggerUIComponent = React.ComponentType<{
 
 export default function ApiExplorer(): React.JSX.Element {
   const [SwaggerUI, setSwaggerUI] = useState<SwaggerUIComponent | null>(null);
+  const openapiUrl = useBaseUrl('/openapi/openapi.json');
 
   useEffect(() => {
     void import('swagger-ui-react/swagger-ui.css');
@@ -19,13 +21,12 @@ export default function ApiExplorer(): React.JSX.Element {
       <main style={{ maxWidth: 1320, margin: '0 auto', padding: '1rem 1rem 3rem' }}>
         <h1>HTTP API reference</h1>
         <p>
-          OpenAPI document: <code>docs-site/static/openapi/openapi.json</code>. Regenerate from repository root:{' '}
-          <code>node scripts/generate-openapi.mjs</code>
+          Regenerate the spec: <code>node scripts/generate-openapi.mjs</code>
         </p>
         {!SwaggerUI ? (
           <p>Loading OpenAPI UI…</p>
         ) : (
-          <SwaggerUI url="/openapi/openapi.json" docExpansion="list" />
+          <SwaggerUI url={openapiUrl} docExpansion="list" />
         )}
       </main>
     </Layout>

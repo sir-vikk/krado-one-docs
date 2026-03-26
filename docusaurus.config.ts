@@ -51,6 +51,8 @@ const config: Config = {
       logo: {
         alt: 'Krado One',
         src: 'img/logo-icon.png',
+        href: '/',
+        target: '_self',
       },
       items: [
         {to: '/', label: 'Home', position: 'left', target: '_self', className: 'navbar__link--home'},

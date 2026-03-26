@@ -1,0 +1,137 @@
+.section {
+  padding: 100px 24px;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent-2);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.heading {
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  font-weight: 900;
+  color: var(--heading);
+  letter-spacing: -0.03em;
+  margin-bottom: 56px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  text-align: left;
+}
+
+.card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+}
+.card.featured {
+  border-color: var(--accent);
+  background: var(--bg-card-2);
+  position: relative;
+}
+
+.featuredBadge {
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 100px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.tier {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  margin-bottom: 8px;
+}
+
+.price {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--heading);
+  letter-spacing: -0.03em;
+  margin-bottom: 4px;
+}
+.priceSub {
+  font-size: 0.875rem;
+  color: var(--text-dimmer);
+  margin-bottom: 24px;
+}
+
+.features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 28px;
+  flex: 1;
+}
+.features li {
+  font-size: 0.875rem;
+  color: var(--text);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.features li::before {
+  content: '✓';
+  color: var(--accent-2);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.features li.dim {
+  color: var(--text-dimmer);
+}
+.features li.dim::before {
+  color: var(--text-dimmer);
+}
+
+.btn {
+  display: block;
+  text-align: center;
+  padding: 11px 20px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: opacity 0.15s, transform 0.15s;
+}
+.btnPrimary {
+  background: var(--accent);
+  color: #fff;
+}
+.btnPrimary:hover { opacity: 0.85; transform: translateY(-1px); }
+.btnOutline {
+  border: 1px solid var(--border-2);
+  color: var(--text);
+}
+.btnOutline:hover { border-color: var(--accent-2); color: var(--heading); }

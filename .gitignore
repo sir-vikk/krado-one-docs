@@ -3,6 +3,10 @@
 
 # Production
 /build
+/dist
+devx-website/out
+devx-website/node_modules
+devx-website/.next
 
 # Generated files
 .docusaurus
