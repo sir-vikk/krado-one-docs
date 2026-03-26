@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: 'Krado One — A DevX Platform',
   description:
     'Self-hosted internal developer platform. Tasks, service catalog, runbooks, incident management, cloud visibility, and more — all in one place.',
-  icons: { icon: '/logo.png' },
+  icons: { icon: '/favicon.png' },
   openGraph: {
     title: 'Krado One',
     description: 'The internal developer platform for modern engineering teams.',

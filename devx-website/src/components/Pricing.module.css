@@ -135,3 +135,8 @@
   color: var(--text);
 }
 .btnOutline:hover { border-color: var(--accent-2); color: var(--heading); }
+.btnDisabled {
+  opacity: 0.6;
+  cursor: default;
+  pointer-events: none;
+}

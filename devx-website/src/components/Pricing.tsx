@@ -11,7 +11,7 @@ export default function Pricing() {
           {/* Free */}
           <div className={styles.card}>
             <div className={styles.tier}>Free</div>
-            <div className={styles.price}>$0</div>
+            <div className={styles.price}>Coming Soon</div>
             <div className={styles.priceSub}>Self-hosted · no license key</div>
             <ul className={styles.features}>
               <li>All core portals (Tasks, Catalog, Runbooks, Incidents…)</li>
@@ -23,17 +23,17 @@ export default function Pricing() {
               <li className={styles.dim}>AI chatbot</li>
               <li className={styles.dim}>DRM Tracker</li>
             </ul>
-            <a href="https://docs.devxplatform.io/getting-started/quick-start" className={`${styles.btn} ${styles.btnOutline}`}>
+            <a href="/docs/" className={`${styles.btn} ${styles.btnOutline}`}>
               Get started →
             </a>
           </div>
 
           {/* Pro */}
           <div className={`${styles.card} ${styles.featured}`}>
-            <div className={styles.featuredBadge}>Most popular</div>
+            <div className={styles.featuredBadge}>Coming Soon</div>
             <div className={styles.tier}>Pro</div>
-            <div className={styles.price}>$49</div>
-            <div className={styles.priceSub}>per month · self-hosted · license key</div>
+            <div className={styles.price}>Coming Soon</div>
+            <div className={styles.priceSub}>Self-hosted · license key required</div>
             <ul className={styles.features}>
               <li>Everything in Free</li>
               <li>AI chatbot (OpenAI)</li>
@@ -41,16 +41,16 @@ export default function Pricing() {
               <li>Priority support</li>
               <li>License validated via LicenseGate</li>
             </ul>
-            <a href="mailto:vivek@devxplatform.io?subject=DevX+Pro+License" className={`${styles.btn} ${styles.btnPrimary}`}>
-              Get a Pro license →
+            <a href="/docs/" className={`${styles.btn} ${styles.btnPrimary}`}>
+              Get started →
             </a>
           </div>
 
           {/* Enterprise */}
           <div className={styles.card}>
             <div className={styles.tier}>Enterprise</div>
-            <div className={styles.price}>Custom</div>
-            <div className={styles.priceSub}>fully managed cloud · we handle everything</div>
+            <div className={styles.price}>Coming Soon</div>
+            <div className={styles.priceSub}>Fully managed cloud · we handle everything</div>
             <ul className={styles.features}>
               <li>Everything in Pro</li>
               <li>Managed cloud deployment</li>
@@ -59,8 +59,8 @@ export default function Pricing() {
               <li>SLA & dedicated support</li>
               <li>Custom integrations</li>
             </ul>
-            <a href="mailto:vivek@devxplatform.io?subject=DevX+Enterprise" className={`${styles.btn} ${styles.btnOutline}`}>
-              Contact us →
+            <a href="/docs/" className={`${styles.btn} ${styles.btnOutline}`}>
+              Get started →
             </a>
           </div>
 

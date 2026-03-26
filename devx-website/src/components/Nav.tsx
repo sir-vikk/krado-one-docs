@@ -8,7 +8,7 @@ export default function Nav() {
     <header className={styles.header}>
       <nav className={styles.nav}>
         <a href="/" className={styles.logo}>
-          <img src="/logo.png" alt="Krado One" className={styles.logoImg} />
+          <img src="/favicon.png" alt="Krado One" className={styles.logoImg} />
         </a>
 
         <ul className={`${styles.links} ${open ? styles.open : ''}`}>

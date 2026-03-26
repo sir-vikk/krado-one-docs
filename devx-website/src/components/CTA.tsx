@@ -11,8 +11,8 @@ export default function CTA() {
           engineering workflow in one place — today.
         </p>
         <div className={styles.ctas}>
-          <a href="#pricing" className={styles.btnPrimary}>Get started free</a>
-          <a href="https://docs.devxplatform.io" className={styles.btnGhost}>Read the docs →</a>
+          <a href="/docs/" className={styles.btnPrimary}>Get started free</a>
+          <a href="/docs/" className={styles.btnGhost}>Read the docs →</a>
         </div>
       </div>
     </section>
