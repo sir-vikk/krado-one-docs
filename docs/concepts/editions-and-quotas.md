@@ -13,8 +13,8 @@ Krado One ships as a single codebase with three tiers. **Free** and **Pro** are 
 | | **Free** | **Pro** | **Enterprise** |
 |---|----------|---------|----------------|
 | Infrastructure | You self-host | You self-host | We manage it |
-| License | None | LicenseGate key | Account-based |
-| `APP_EDITION` value | `community` | Set by license | Set by license |
+| License | None | `LICENSE_KEY` env var | Provisioned by us |
+| Activation | No key needed | Set `LICENSE_KEY` and restart | We handle it |
 
 ---
 
@@ -46,7 +46,7 @@ On startup, `LoadLicense()` checks (in order):
 2. `LICENSE_KEY_FILE` env var
 3. `data/license.key` file
 
-If a valid LicenseGate key is found, the effective tier becomes **Pro** regardless of `APP_EDITION`. In a pinned Pro binary, `APP_EDITION=pro` alone has no effect — a real key is required.
+If a valid license key is found, the effective tier becomes **Pro** (or **Enterprise** for enterprise keys). The key is validated offline using HMAC-SHA256 — no external service call is required.
 
 ---
 
@@ -64,7 +64,7 @@ All the features listed here are available with `APP_EDITION=community`, no lice
 
 ## Pro tier features
 
-Requires a valid LicenseGate license key. Set `LICENSEGATE_USER_ID` to your account ID and activate via Portal Config → License.
+Requires a valid license key. Set `LICENSE_KEY` in your environment (or upload via **Portal Config → License**). Keys are validated offline — no external service needed.
 
 Additional features over Free:
 
@@ -80,10 +80,10 @@ Additional features over Free:
 
 Enterprise instances are provisioned and managed by us. You get the same feature set as Pro plus:
 
-- ArgoCD, PagerDuty, Prometheus integration APIs
-- SSO (SAML / OIDC)
-- Advanced FinOps and compliance workflows
+- Multi-org / multi-tenant support
 - Managed infrastructure — zero ops on your side
+- SLA & dedicated support
+- Custom integrations
 
 Contact us to get an Enterprise account.
 

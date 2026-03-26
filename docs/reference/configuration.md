@@ -17,13 +17,10 @@ Variables set via **Portal Config → Integrations** are stored in the database 
 | `PORT` | `8080` | Backend API port |
 | `GIN_MODE` | `debug` | Set to `release` in production |
 | `JWT_SECRET` | random | **Required in production.** 32+ random characters. If unset, sessions are lost on restart |
-| `APP_EDITION` | `enterprise` | Tier: `community`, `pro`, or `enterprise`. A valid LicenseGate key overrides this. |
+| `APP_EDITION` | `community` | Default tier when no license key is present: `community`, `pro`, or `enterprise`. |
 | `EDITION_UPGRADE_URL` | — | URL shown in upgrade prompts |
-| `LICENSEGATE_USER_ID` | — | **Required for Pro.** Your user ID from the LicenseGate dashboard. |
-| `LICENSEGATE_API_URL` | `https://api.licensegate.io` | Override to point at a self-hosted LicenseGate instance. |
-| `LICENSEGATE_SCOPE` | — | Scope restriction to validate against (set this if you created licenses with a scope). |
-| `LICENSE_KEY` | — | Pro license key — skips disk read when set. Managed via Portal Config → License. |
-| `LICENSE_KEY_FILE` | — | Path to a file containing the license key. |
+| `LICENSE_KEY` | — | Pro/Enterprise license key. Validated offline (no external service). Also managed via Portal Config → License. |
+| `LICENSE_KEY_FILE` | — | Path to a file containing the license key (alternative to `LICENSE_KEY`). |
 | `DEVX_DATA_DIR` | `../data` | Directory for `license.key` and `tasks.db`. |
 
 ---
@@ -180,7 +177,7 @@ Set `VITE_API_URL` to your public backend URL before building the frontend image
 | `SMTP_PORT` | `587` | SMTP port |
 | `SMTP_USER` | — | SMTP username |
 | `SMTP_PASSWORD` | — | SMTP password |
-| `SMTP_FROM` | `noreply@devx.local` | From address |
+| `SMTP_FROM` | `noreply@krado.local` | From address |
 
 ---
 
@@ -190,4 +187,4 @@ Set `VITE_API_URL` to your public backend URL before building the frontend image
 node scripts/generate-openapi.mjs
 ```
 
-Output: `docs-site/static/openapi/openapi.json` — used by the interactive API explorer at `/api-explorer`.
+Output: `static/openapi/openapi.json` — used by the interactive API explorer at `/api-explorer`.
