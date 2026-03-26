@@ -9,6 +9,7 @@ export default function Nav() {
       <nav className={styles.nav}>
         <a href="/" className={styles.logo}>
           <img src="/favicon.png" alt="Krado One" className={styles.logoImg} />
+          <span className={styles.logoText}>Krado One</span>
         </a>
 
         <ul className={`${styles.links} ${open ? styles.open : ''}`}>
