@@ -15,7 +15,7 @@ export default function Hero() {
           cloud visibility, and more — all unified under one roof.
         </p>
         <div className={styles.ctas}>
-          <a href="#pricing" className={styles.btnPrimary}>Get started free</a>
+          <a href="/docs/" className={styles.btnPrimary}>Get started free</a>
           <a href="#how-it-works" className={styles.btnGhost}>See how it works →</a>
         </div>
         <div className={styles.stats}>
