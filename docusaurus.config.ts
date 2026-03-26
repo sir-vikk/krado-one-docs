@@ -2,14 +2,13 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
-/** Cloudflare Pages serves at domain root — no subpath needed. */
 const url = process.env.CF_PAGES_URL ?? 'http://localhost:3000';
-const baseUrl = '/';
+const baseUrl = '/docs/';
 
 const config: Config = {
   title: 'Krado One',
   tagline: 'A DevX Platform — tasks, catalog, runbooks, incidents, cloud, and more.',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.png',
 
   url,
   baseUrl,
@@ -27,7 +26,7 @@ const config: Config = {
       'classic',
       {
         docs: {
-          routeBasePath: 'docs',
+          routeBasePath: '/',
           path: 'docs',
           sidebarPath: './sidebars.ts',
           editUrl: undefined,
@@ -51,9 +50,10 @@ const config: Config = {
       title: 'Krado One',
       logo: {
         alt: 'Krado One',
-        src: 'img/logo.png',
+        src: 'img/logo-icon.png',
       },
       items: [
+        {to: '/', label: 'Home', position: 'left', target: '_self', className: 'navbar__link--home'},
         {
           type: 'docSidebar',
           sidebarId: 'docsSidebar',
@@ -69,7 +69,7 @@ const config: Config = {
         {
           title: 'Docs',
           items: [
-            {label: 'Introduction', to: '/docs/'},
+            {label: 'Introduction', to: '/'},
             {label: 'API Explorer', to: '/api-explorer'},
           ],
         },
