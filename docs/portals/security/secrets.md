@@ -1,0 +1,31 @@
+---
+sidebar_position: 3
+---
+
+# Secrets Inventory
+
+**Route:** `/security/secrets` · **Edition:** Pro+ · **Beta**
+
+The Secrets Inventory tracks where secrets (API keys, database passwords, certificates) are stored and when they were last rotated. It does **not** store the actual secret values — only metadata.
+
+![Secrets Inventory](/assets/screenshots/security/secrets.png)
+
+## Secret entry fields
+
+| Field | Description |
+|-------|-------------|
+| Name | Human-readable identifier (e.g. "Stripe API Key - Production") |
+| Type | API Key / Database Password / Certificate / SSH Key / Other |
+| Store | Where it lives: Vault / Kubernetes Secret / AWS SSM / Azure Key Vault / GCP Secret Manager |
+| Service | Associated service from the catalog |
+| Last rotated | Date of last rotation |
+| Expiry date | When this secret expires (if applicable) |
+| Notes | Rotation instructions or ownership notes |
+
+## Rotation tracking
+
+Secrets are highlighted when:
+- **Overdue** — last rotated more than 90 days ago (configurable)
+- **Expiring soon** — expiry date within 14 days
+
+Use the stats panel to see how many secrets need attention.

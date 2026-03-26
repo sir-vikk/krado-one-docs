@@ -1,0 +1,337 @@
+# Format: METHOD|PATH|TAG|SUMMARY|PUBLIC(0|1)
+# PUBLIC=1 means no Bearer auth required
+GET|/api/health|System|Health check|1
+GET|/api/setup|Setup|Whether first-time setup is required|1
+POST|/api/setup|Setup|Bootstrap org + owner user; org and user JSON required|1
+GET|/api/portal/feature-flags|Portal|Effective portal flags and limits|0
+POST|/api/auth/login|Auth|Login (access + refresh tokens)|1
+POST|/api/auth/refresh|Auth|Refresh access token|1
+POST|/api/auth/logout|Auth|Logout (invalidate refresh)|0
+GET|/api/auth/me|Auth|Current user|0
+PUT|/api/auth/change-password|Auth|Change password|0
+POST|/api/auth/forgot-password|Auth|Request password reset|1
+POST|/api/auth/reset-password|Auth|Complete password reset|1
+GET|/api/auth/config|Auth|Public auth config (e.g. SSO hints)|1
+GET|/api/users|Users|List users (admin)|0
+POST|/api/users|Users|Create user (admin)|0
+PUT|/api/users/{id}/role|Users|Update user role|0
+PUT|/api/users/{id}/team|Users|Assign team|0
+PUT|/api/users/{id}/password|Users|Set user password|0
+PUT|/api/users/{id}/status|Users|Enable/disable user|0
+DELETE|/api/users/{id}|Users|Delete user|0
+POST|/api/users/{id}/reset-link|Users|Admin password reset link|0
+GET|/api/tasks|Tasks|List tasks|0
+POST|/api/tasks|Tasks|Create task|0
+GET|/api/tasks/stats|Tasks|Task statistics|0
+GET|/api/tasks/{id}|Tasks|Get task|0
+PUT|/api/tasks/{id}|Tasks|Update task|0
+DELETE|/api/tasks/{id}|Tasks|Delete task|0
+GET|/api/jira/status|JIRA|Connection status|0
+GET|/api/jira/config|JIRA|Get JIRA config|0
+POST|/api/jira/config|JIRA|Save JIRA config|0
+PUT|/api/jira/check-settings|JIRA|Update check settings|0
+POST|/api/jira/test|JIRA|Test connection|0
+POST|/api/jira/verify|JIRA|Verify stored credentials|0
+DELETE|/api/jira/config|JIRA|Remove config|0
+GET|/api/jira/tickets|JIRA|List tickets|0
+GET|/api/jira/issue-types|JIRA|Issue types|0
+POST|/api/jira/check|JIRA|Trigger daily check|0
+GET|/api/jira/boards|JIRA|Boards|0
+GET|/api/jira/boards/{id}/tickets|JIRA|Tickets on board|0
+GET|/api/jira/projects|JIRA|Projects|0
+POST|/api/jira/projects|JIRA|Save project|0
+DELETE|/api/jira/projects/{key}|JIRA|Remove project|0
+POST|/api/jira/create-ticket|JIRA|Create JIRA ticket|0
+GET|/api/jira/ticket/{key}|JIRA|Get issue by key|0
+POST|/api/jira/import-ticket|JIRA|Import as task|0
+POST|/api/jira/link-ticket|JIRA|Link task to JIRA|0
+GET|/api/alert-channels|Alerts|List alert channel configs|0
+GET|/api/alert-channels/{type}|Alerts|Get channel|0
+POST|/api/alert-channels/{type}|Alerts|Save channel|0
+DELETE|/api/alert-channels/{type}|Alerts|Delete channel|0
+POST|/api/alert-channels/{type}/test|Alerts|Test channel|0
+GET|/api/ticketing/status|Ticketing|Provider status|0
+GET|/api/ticketing/config|Ticketing|Get config|0
+POST|/api/ticketing/config|Ticketing|Save config|0
+DELETE|/api/ticketing/config|Ticketing|Delete config|0
+POST|/api/ticketing/test|Ticketing|Test connection|0
+GET|/api/ticketing/tickets|Ticketing|List tickets|0
+GET|/api/ticketing/issue-types|Ticketing|Issue types|0
+GET|/api/slack/config|Slack|Get Slack config|0
+POST|/api/slack/config|Slack|Save Slack config|0
+POST|/api/slack/verify|Slack|Verify stored config|0
+DELETE|/api/slack/config|Slack|Remove config|0
+POST|/api/scan/slack|Scan|Scan Slack for task candidates|0
+POST|/api/scan/slack/message|Scan|Fetch one Slack message|0
+POST|/api/scan/email|Scan|Scan email|0
+POST|/api/scan/create-tasks|Scan|Create tasks from scan results|0
+GET|/api/email-scan/config|Email scan|Get email scan config|0
+POST|/api/email-scan/config|Email scan|Save config|0
+POST|/api/email-scan/verify|Email scan|Verify config|0
+DELETE|/api/email-scan/config|Email scan|Remove config|0
+GET|/api/n8n/config|n8n|Get n8n config|0
+POST|/api/n8n/config|n8n|Save n8n config|0
+DELETE|/api/n8n/config|n8n|Remove config|0
+GET|/api/n8n/test|n8n|Test connection|0
+POST|/api/n8n/test|n8n|Test with body|0
+GET|/api/n8n/workflows|n8n|Proxy workflows|0
+GET|/api/n8n/executions|n8n|Proxy executions|0
+GET|/api/n8n/executions/{id}|n8n|Execution detail|0
+GET|/api/db/tables|Database|List DB tables (read-only explorer)|0
+POST|/api/db/query|Database|Run SELECT (read-only)|0
+GET|/api/backup/config|Backup|Backup config (SQLite builds only)|0
+POST|/api/backup/config|Backup|Save backup config|0
+GET|/api/backup/list|Backup|List backups|0
+POST|/api/backup/run|Backup|Run backup now|0
+GET|/api/catalog/services|Service catalog|List catalog services|0
+POST|/api/catalog/services|Service catalog|Create service|0
+GET|/api/catalog/services/{id}|Service catalog|Get service|0
+PUT|/api/catalog/services/{id}|Service catalog|Update service|0
+DELETE|/api/catalog/services/{id}|Service catalog|Delete service|0
+GET|/api/catalog/services/{id}/dependencies|Service catalog|Get dependencies|0
+PUT|/api/catalog/services/{id}/dependencies|Service catalog|Set dependencies|0
+GET|/api/catalog/services/{id}/slos|Service catalog|Get SLOs|0
+PUT|/api/catalog/services/{id}/slos|Service catalog|Set SLOs|0
+GET|/api/catalog/services/{id}/environments|Service catalog|List environments|0
+PUT|/api/catalog/services/{id}/environments|Service catalog|Upsert environment|0
+DELETE|/api/catalog/services/{id}/environments/{env}|Service catalog|Delete environment|0
+GET|/api/catalog/graph|Service catalog|Dependency graph|0
+GET|/api/catalog/{id}/runbook|Runbooks|Get service-linked runbook markdown|0
+PUT|/api/catalog/{id}/runbook|Runbooks|Save service-linked runbook|0
+GET|/api/scaffolding/templates|Scaffolding|List templates|0
+POST|/api/scaffolding/templates|Scaffolding|Create template|0
+GET|/api/scaffolding/templates/{id}|Scaffolding|Get template|0
+PUT|/api/scaffolding/templates/{id}|Scaffolding|Update template|0
+DELETE|/api/scaffolding/templates/{id}|Scaffolding|Delete template|0
+POST|/api/scaffolding/provision|Scaffolding|Submit provisioning|0
+GET|/api/scaffolding/provision/{id}/status|Scaffolding|Provisioning status|0
+GET|/api/scaffolding/provision/history|Scaffolding|History|0
+GET|/api/github/config|GitHub|Get GitHub config|0
+POST|/api/github/config|GitHub|Save config|0
+POST|/api/github/test|GitHub|Test connection|0
+DELETE|/api/github/config|GitHub|Remove config|0
+GET|/api/github/repos|GitHub|List repos|0
+GET|/api/terraform/config|Terraform|Get Terraform Cloud config|0
+POST|/api/terraform/config|Terraform|Save config|0
+POST|/api/terraform/test|Terraform|Test|0
+DELETE|/api/terraform/config|Terraform|Remove config|0
+GET|/api/argocd/config|Argo CD|Get Argo CD config|0
+POST|/api/argocd/config|Argo CD|Save config|0
+POST|/api/argocd/test|Argo CD|Test|0
+DELETE|/api/argocd/config|Argo CD|Remove|0
+GET|/api/argocd/apps|Argo CD|List applications|0
+GET|/api/pagerduty/config|PagerDuty|Get config|0
+POST|/api/pagerduty/config|PagerDuty|Save|0
+POST|/api/pagerduty/test|PagerDuty|Test|0
+DELETE|/api/pagerduty/config|PagerDuty|Remove|0
+GET|/api/prometheus/config|Prometheus|Get config|0
+POST|/api/prometheus/config|Prometheus|Save|0
+POST|/api/prometheus/test|Prometheus|Test|0
+DELETE|/api/prometheus/config|Prometheus|Remove|0
+GET|/api/metrics/dashboard|Metrics|Ops dashboard snapshot|0
+GET|/api/metrics/deployments|Metrics|Recent deployments|0
+GET|/api/metrics/incidents|Metrics|Recent incidents|0
+POST|/api/metrics/collect|Metrics|Trigger collection|0
+GET|/api/metrics/services/{id}/dora|Metrics|DORA snapshot|0
+GET|/api/metrics/services/{id}/deployments|Metrics|Service deployments|0
+GET|/api/metrics/services/{id}/incidents|Metrics|Service incidents|0
+GET|/api/metrics/services/{id}/integrations|Metrics|Get integrations|0
+PUT|/api/metrics/services/{id}/integrations|Metrics|Save integrations|0
+GET|/api/scorecards/leaderboard|Scorecards|Leaderboard|0
+GET|/api/scorecards/rules|Scorecards|Rules|0
+GET|/api/scorecards/services/{id}|Scorecards|Service scorecard|0
+GET|/api/ai/config|AI|Get AI config|0
+POST|/api/ai/config|AI|Save AI config|0
+POST|/api/ai/test|AI|Test|0
+POST|/api/ai/chat|AI|Chat completion|0
+GET|/api/ai/chat/{session}|AI|Chat history|0
+DELETE|/api/ai/chat/{session}|AI|Clear session|0
+POST|/api/ai/runbook-chat|AI|Runbook assistant chat|0
+POST|/api/runbooks/{id}/webhook|Runbooks|Public webhook trigger (secret in body/header per impl)|1
+GET|/api/runbooks|Runbooks|List runbooks|0
+POST|/api/runbooks|Runbooks|Create runbook|0
+POST|/api/runbooks/validate|Runbooks|Validate definition|0
+POST|/api/runbooks/suggest|Runbooks|AI suggest steps|0
+POST|/api/runbooks/test-step|Runbooks|Test one step|0
+GET|/api/runbooks/{id}|Runbooks|Get runbook|0
+PUT|/api/runbooks/{id}|Runbooks|Update runbook|0
+DELETE|/api/runbooks/{id}|Runbooks|Delete runbook|0
+POST|/api/runbooks/{id}/execute|Runbooks|Execute|0
+POST|/api/runbooks/{id}/execute-ai|Runbooks|Execute with AI|0
+GET|/api/runbooks/{id}/executions|Runbooks|List executions|0
+POST|/api/runbooks/{id}/triggers|Runbooks|Add trigger|0
+PUT|/api/runbooks/{id}/triggers/{tid}|Runbooks|Update trigger|0
+DELETE|/api/runbooks/{id}/triggers/{tid}|Runbooks|Delete trigger|0
+GET|/api/executions|Executions|List executions|0
+GET|/api/executions/{id}|Executions|Get execution|0
+DELETE|/api/executions/{id}|Executions|Cancel execution|0
+GET|/api/mcp-servers|MCP|List MCP servers|0
+POST|/api/mcp-servers|MCP|Create MCP server|0
+GET|/api/mcp-servers/{id}|MCP|Get server|0
+PUT|/api/mcp-servers/{id}|MCP|Update server|0
+DELETE|/api/mcp-servers/{id}|MCP|Delete server|0
+POST|/api/mcp-servers/{id}/test|MCP|Test server|0
+GET|/api/cloud/summary|Cloud|Multi-cloud summary|0
+GET|/api/cloud/resources|Cloud|Resources|0
+GET|/api/cloud/costs|Cloud|Costs|0
+POST|/api/cloud/sync|Cloud|Trigger sync|0
+GET|/api/cloud/aws/config|Cloud|AWS config|0
+POST|/api/cloud/aws/config|Cloud|Save AWS|0
+POST|/api/cloud/aws/test|Cloud|Test AWS|0
+GET|/api/cloud/gcp/config|Cloud|GCP config|0
+POST|/api/cloud/gcp/config|Cloud|Save GCP|0
+POST|/api/cloud/gcp/test|Cloud|Test GCP|0
+GET|/api/cloud/azure/config|Cloud|Azure config|0
+POST|/api/cloud/azure/config|Cloud|Save Azure|0
+POST|/api/cloud/azure/test|Cloud|Test Azure|0
+GET|/api/admin/flags|Admin|Get feature flags (OSS: filtered)|0
+PUT|/api/admin/flags|Admin|Save flags (403 in OSS)|0
+GET|/api/admin/roles|Admin|List role definitions (Pro admin)|0
+POST|/api/admin/roles|Admin|Create role|0
+PUT|/api/admin/roles/{id}|Admin|Update role|0
+DELETE|/api/admin/roles/{id}|Admin|Delete role|0
+GET|/api/admin/sso|SSO admin|List SSO configs (Enterprise tier)|0
+POST|/api/admin/sso/{provider}|SSO admin|Save SSO provider|0
+DELETE|/api/admin/sso/{provider}|SSO admin|Delete SSO|0
+GET|/api/admin/orgs|Organizations|List orgs|0
+POST|/api/admin/orgs|Organizations|Create org|0
+PUT|/api/admin/orgs/{id}|Organizations|Update org|0
+DELETE|/api/admin/orgs/{id}|Organizations|Delete org|0
+GET|/api/admin/orgs/{id}/users|Organizations|Users in org|0
+PUT|/api/admin/users/{id}/org|Organizations|Assign user to org|0
+GET|/api/admin/users/{id}/permissions|Organizations|User permission overrides|0
+POST|/api/admin/users/{id}/permissions|Organizations|Set permission|0
+DELETE|/api/admin/users/{id}/permissions/{permId}|Organizations|Remove permission|0
+GET|/api/disasters/template|DRM incidents|Download import template|0
+POST|/api/disasters/upload|DRM incidents|Upload import document|0
+GET|/api/disasters/stats/overview|DRM incidents|Dashboard stats|0
+GET|/api/disasters|DRM incidents|List disasters|0
+POST|/api/disasters|DRM incidents|Create disaster|0
+GET|/api/disasters/{id}|DRM incidents|Get disaster|0
+PUT|/api/disasters/{id}|DRM incidents|Update disaster|0
+DELETE|/api/disasters/{id}|DRM incidents|Delete disaster|0
+POST|/api/disasters/{id}/action-items|DRM incidents|Create action item|0
+PUT|/api/disasters/{id}/action-items/{actionId}|DRM incidents|Update action item|0
+POST|/api/disasters/{id}/timeline|DRM incidents|Add timeline event|0
+POST|/api/disasters/{id}/comments|DRM incidents|Add comment|0
+GET|/api/disasters/{id}/affected-products|DRM incidents|List affected products|0
+POST|/api/disasters/{id}/affected-products|DRM incidents|Add affected product|0
+DELETE|/api/disasters/{id}/affected-products/{relId}|DRM incidents|Remove affected product|0
+GET|/api/disasters/{id}/affected-customers|DRM incidents|List affected customers|0
+POST|/api/disasters/{id}/affected-customers|DRM incidents|Add affected customer|0
+PUT|/api/disasters/{id}/affected-customers/{relId}|DRM incidents|Update affected customer|0
+DELETE|/api/disasters/{id}/affected-customers/{relId}|DRM incidents|Remove affected customer|0
+GET|/api/disasters/{id}/affected-services|DRM incidents|List affected services|0
+POST|/api/disasters/{id}/affected-services|DRM incidents|Add affected service|0
+DELETE|/api/disasters/{id}/affected-services/{relId}|DRM incidents|Remove affected service|0
+GET|/api/summaries/config|DRM summaries|Get LLM summary config|0
+GET|/api/summaries|DRM summaries|List saved summaries|0
+POST|/api/summaries/preview|DRM summaries|Preview disasters for summary|0
+POST|/api/summaries/generate|DRM summaries|Generate summary|0
+GET|/api/summaries/{id}|DRM summaries|Get summary|0
+DELETE|/api/summaries/{id}|DRM summaries|Delete summary|0
+GET|/api/saved-filters|DRM filters|List saved filters|0
+POST|/api/saved-filters|DRM filters|Create saved filter|0
+GET|/api/saved-filters/{id}|DRM filters|Get saved filter|0
+DELETE|/api/saved-filters/{id}|DRM filters|Delete saved filter|0
+GET|/api/maintenance|Maintenance|List maintenance windows|0
+GET|/api/maintenance/upcoming|Maintenance|Upcoming windows|0
+POST|/api/maintenance|Maintenance|Create window|0
+GET|/api/maintenance/{id}|Maintenance|Get window|0
+PUT|/api/maintenance/{id}|Maintenance|Update window|0
+DELETE|/api/maintenance/{id}|Maintenance|Delete window|0
+POST|/api/maintenance/{id}/start|Maintenance|Start window|0
+POST|/api/maintenance/{id}/complete|Maintenance|Complete window|0
+POST|/api/maintenance/{id}/cancel|Maintenance|Cancel window|0
+POST|/api/maintenance/{id}/notify|Maintenance|Send notification|0
+GET|/api/config/google-calendar|Integrations|Get Google Calendar config|0
+POST|/api/config/google-calendar|Integrations|Save Google Calendar config|0
+GET|/api/teams|DRM catalog|List teams|0
+POST|/api/teams|DRM catalog|Create team|0
+GET|/api/teams/{id}|DRM catalog|Get team|0
+PUT|/api/teams/{id}|DRM catalog|Update team|0
+DELETE|/api/teams/{id}|DRM catalog|Delete team|0
+POST|/api/teams/{id}/emails|DRM catalog|Add team email|0
+DELETE|/api/teams/{id}/emails/{email}|DRM catalog|Remove team email|0
+GET|/api/products|DRM catalog|List products|0
+POST|/api/products|DRM catalog|Create product|0
+GET|/api/products/{id}|DRM catalog|Get product|0
+PUT|/api/products/{id}|DRM catalog|Update product|0
+DELETE|/api/products/{id}|DRM catalog|Delete product|0
+GET|/api/products/{id}/services|DRM catalog|Product services|0
+POST|/api/products/{id}/services|DRM catalog|Add product service|0
+PUT|/api/products/{id}/services/{serviceId}|DRM catalog|Update product service|0
+DELETE|/api/products/{id}/services/{serviceId}|DRM catalog|Remove product service|0
+GET|/api/products/{id}/users|DRM catalog|Product users|0
+PUT|/api/products/{id}/users|DRM catalog|Set product users|0
+GET|/api/services|DRM catalog|Flat DRM services list|0
+GET|/api/customers|DRM catalog|List customers|0
+GET|/api/customers/search|DRM catalog|Search customers|0
+POST|/api/customers|DRM catalog|Create customer|0
+GET|/api/customers/{id}|DRM catalog|Get customer|0
+PUT|/api/customers/{id}|DRM catalog|Update customer|0
+DELETE|/api/customers/{id}|DRM catalog|Delete customer|0
+GET|/api/audit|Audit|List audit events (admin)|0
+GET|/api/notifications|Notifications|List notifications|0
+PUT|/api/notifications/{id}/read|Notifications|Mark read|0
+PUT|/api/notifications/read-all|Notifications|Mark all read|0
+GET|/api/api-keys|API keys|List keys|0
+POST|/api/api-keys|API keys|Create key|0
+DELETE|/api/api-keys/{id}|API keys|Revoke key|0
+GET|/api/tech-radar|Tech radar|List items|0
+POST|/api/tech-radar|Tech radar|Create item|0
+PUT|/api/tech-radar/{id}|Tech radar|Update|0
+DELETE|/api/tech-radar/{id}|Tech radar|Delete|0
+GET|/api/pipelines|Pipelines|List runs|0
+POST|/api/pipelines|Pipelines|Create run|0
+GET|/api/pipelines/stats|Pipelines|Stats|0
+GET|/api/secrets|Secrets|List secrets inventory|0
+POST|/api/secrets|Secrets|Create entry|0
+DELETE|/api/secrets/{id}|Secrets|Delete entry|0
+GET|/api/secrets/stats|Secrets|Stats|0
+GET|/api/onboarding/templates|Onboarding|List templates|0
+POST|/api/onboarding/templates|Onboarding|Create template|0
+DELETE|/api/onboarding/templates/{id}|Onboarding|Delete template|0
+POST|/api/onboarding/assign|Onboarding|Assign checklist|0
+GET|/api/onboarding/my-checklists|Onboarding|My checklists|0
+GET|/api/onboarding/checklists/{id}/items|Onboarding|Checklist items|0
+PUT|/api/onboarding/items/{id}/toggle|Onboarding|Toggle item|0
+GET|/api/finops/budgets|FinOps|List budgets|0
+POST|/api/finops/budgets|FinOps|Create budget alert|0
+DELETE|/api/finops/budgets/{id}|FinOps|Delete budget|0
+GET|/api/finops/allocations|FinOps|Cost allocations|0
+GET|/api/change-requests|Change requests|List|0
+POST|/api/change-requests|Change requests|Create|0
+PUT|/api/change-requests/{id}/review|Change requests|Review|0
+PUT|/api/change-requests/{id}/implement|Change requests|Mark implemented|0
+GET|/api/api-catalog|API catalog|List entries|0
+POST|/api/api-catalog|API catalog|Create entry|0
+GET|/api/api-catalog/{id}|API catalog|Get entry|0
+DELETE|/api/api-catalog/{id}|API catalog|Delete|0
+GET|/api/vulnerabilities|Vulnerabilities|List|0
+POST|/api/vulnerabilities|Vulnerabilities|Create|0
+PUT|/api/vulnerabilities/{id}/status|Vulnerabilities|Update status|0
+GET|/api/vulnerabilities/stats|Vulnerabilities|Stats|0
+GET|/api/status-page/config|Status page|Get config|0
+POST|/api/status-page/config|Status page|Save config|0
+GET|/api/status-page/services|Status page|List services|0
+POST|/api/status-page/services|Status page|Add service|0
+DELETE|/api/status-page/services/{id}|Status page|Remove service|0
+POST|/api/status-page/overrides|Status page|Create override|0
+GET|/api/status-page/overrides|Status page|Active overrides|0
+GET|/api/promotions|Promotions|List|0
+POST|/api/promotions|Promotions|Create|0
+PUT|/api/promotions/{id}/status|Promotions|Update status|0
+GET|/api/plugins|Plugins|List plugins|0
+POST|/api/plugins|Plugins|Create (admin)|0
+PUT|/api/plugins/{id}|Plugins|Update (admin)|0
+DELETE|/api/plugins/{id}|Plugins|Delete (admin)|0
+GET|/api/compliance/frameworks|Compliance|List frameworks|0
+POST|/api/compliance/frameworks|Compliance|Create framework|0
+DELETE|/api/compliance/frameworks/{id}|Compliance|Delete framework|0
+GET|/api/compliance/frameworks/{frameworkId}/controls|Compliance|List controls|0
+POST|/api/compliance/controls|Compliance|Create control|0
+GET|/api/compliance/controls/{controlId}/evidence|Compliance|List evidence|0
+POST|/api/compliance/evidence|Compliance|Create evidence|0
+PUT|/api/compliance/evidence/{id}|Compliance|Update evidence|0
+GET|/api/compliance/frameworks/{frameworkId}/summary|Compliance|Summary|0

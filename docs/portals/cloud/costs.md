@@ -1,0 +1,26 @@
+---
+sidebar_position: 3
+---
+
+# Cloud Costs
+
+**Route:** `/cloud-portal/costs` · **Edition:** Pro+ · **Beta**
+
+The Costs page shows cloud spend aggregated by provider and service, with trend charts over a selected date range.
+
+![Cloud Costs](/assets/screenshots/cloud/costs.png)
+
+## Spend breakdown
+
+- **By provider** — pie or bar chart of spend per cloud vendor
+- **By service** — top cost drivers (EC2, RDS, S3, BigQuery, etc.)
+- **Over time** — daily or monthly spend trend line
+
+## Cost data source
+
+Cost data is pulled via cloud provider cost APIs:
+- AWS — Cost Explorer API
+- GCP — Cloud Billing API
+- Azure — Cost Management API
+
+Credentials need billing read permissions in addition to resource read permissions.
