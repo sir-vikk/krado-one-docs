@@ -1,0 +1,10 @@
+{
+  "name": "krado-one-docs",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "npm run build:docs && npm run build:merge",
+    "build:docs": "cd docs-site && npm install && npm run build",
+    "build:merge": "mkdir -p dist/docs && cp index.html dist/ && cp -r logo dist/ && cp -r docs-site/out/* dist/docs/"
+  }
+}
