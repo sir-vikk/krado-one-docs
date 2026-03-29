@@ -2,7 +2,7 @@
 
 [Docusaurus](https://docusaurus.io/) + **Swagger UI** for **`static/openapi/openapi.json`**.
 
-## Commands
+##  Commands
 
 From **repository root**:
 
