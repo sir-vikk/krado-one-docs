@@ -5,499 +5,396 @@ mode: "custom"
 ---
 
 <style>{`
+  * { box-sizing: border-box; }
+
   :root {
-    --bg: #04060f;
-    --bg2: #080d1a;
-    --card: #0c1221;
-    --card-border: rgba(99,102,241,0.18);
-    --card-hover: rgba(99,102,241,0.28);
-    --indigo: #6366f1;
-    --indigo-light: #818cf8;
-    --cyan: #22d3ee;
-    --purple: #a855f7;
-    --pink: #ec4899;
-    --text: #f1f5f9;
-    --text-dim: #94a3b8;
-    --text-dimmer: #475569;
-    --green: #10b981;
+    --k-bg:      #04060f;
+    --k-bg2:     #080d1a;
+    --k-card:    #0c1221;
+    --k-border:  rgba(99,102,241,0.15);
+    --k-indigo:  #6366f1;
+    --k-indigo2: #818cf8;
+    --k-cyan:    #22d3ee;
+    --k-purple:  #a855f7;
+    --k-green:   #10b981;
+    --k-text:    #f1f5f9;
+    --k-muted:   #94a3b8;
+    --k-dimmer:  #475569;
   }
 
-  .ko-wrap * { box-sizing: border-box; margin: 0; padding: 0; }
-  .ko-wrap { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6; min-height: 100vh; }
-  .ko-wrap a { text-decoration: none; }
-
-  /* NAV */
-  .ko-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; background: rgba(4,6,15,0.8); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(99,102,241,0.1); }
-  .ko-nav-logo { display: flex; align-items: center; }
-  .ko-nav-logo img { height: 28px; }
-  .ko-nav-links { display: flex; align-items: center; gap: 2rem; }
-  .ko-nav-links a { color: var(--text-dim); font-size: 0.875rem; font-weight: 500; transition: color 0.15s; }
-  .ko-nav-links a:hover { color: var(--text); }
-  .ko-nav-cta { background: var(--indigo); color: #fff !important; padding: 0.5rem 1.25rem; border-radius: 8px; font-weight: 600; font-size: 0.875rem; transition: opacity 0.15s !important; }
-  .ko-nav-cta:hover { opacity: 0.85; }
-
-  /* HERO */
-  .ko-hero { padding: 9rem 2rem 4rem; max-width: 1200px; margin: 0 auto; }
-  .ko-hero-eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.25); color: var(--indigo-light); border-radius: 999px; padding: 0.35rem 1rem; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 1.75rem; }
-  .ko-hero-eyebrow span { width: 6px; height: 6px; background: var(--cyan); border-radius: 50%; display: inline-block; box-shadow: 0 0 8px var(--cyan); }
-  .ko-hero h1 { font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 900; line-height: 1.05; letter-spacing: -0.03em; color: var(--text); margin-bottom: 1.5rem; max-width: 820px; }
-  .ko-grad { background: linear-gradient(135deg, var(--indigo-light) 0%, var(--cyan) 50%, var(--purple) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-  .ko-hero-sub { font-size: 1.15rem; color: var(--text-dim); max-width: 560px; margin-bottom: 2.5rem; line-height: 1.75; }
-  .ko-hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 4rem; }
-  .ko-btn-primary { background: linear-gradient(135deg, var(--indigo) 0%, #4f46e5 100%); color: #fff; padding: 0.85rem 2rem; border-radius: 10px; font-weight: 700; font-size: 1rem; box-shadow: 0 0 30px rgba(99,102,241,0.35); transition: box-shadow 0.2s; }
-  .ko-btn-primary:hover { box-shadow: 0 0 50px rgba(99,102,241,0.55); }
-  .ko-btn-ghost { background: rgba(255,255,255,0.04); color: var(--text-dim); padding: 0.85rem 2rem; border-radius: 10px; font-weight: 600; font-size: 1rem; border: 1px solid rgba(255,255,255,0.08); transition: border-color 0.2s, color 0.2s; }
-  .ko-btn-ghost:hover { border-color: rgba(99,102,241,0.4); color: var(--text); }
-  .ko-stats { display: flex; gap: 3rem; flex-wrap: wrap; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
-  .ko-stat-num { font-size: 1.5rem; font-weight: 800; color: var(--text); }
-  .ko-stat-label { font-size: 0.8rem; color: var(--text-dimmer); margin-top: 0.15rem; }
-
-  /* BENTO GRID */
-  .ko-bento { max-width: 1200px; margin: 0 auto; padding: 2rem 2rem 5rem; display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-rows: 200px; gap: 1rem; }
-  .ko-tile { background: var(--card); border: 1px solid var(--card-border); border-radius: 18px; padding: 1.75rem; position: relative; overflow: hidden; transition: border-color 0.2s, transform 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
-  .ko-tile:hover { border-color: var(--card-hover); transform: translateY(-2px); }
-  .ko-tile::before { content: ''; position: absolute; inset: 0; opacity: 0; background: radial-gradient(600px circle at var(--x, 50%) var(--y, 50%), rgba(99,102,241,0.06), transparent 40%); transition: opacity 0.3s; pointer-events: none; }
-  .ko-tile:hover::before { opacity: 1; }
-
-  .ko-tile-a { grid-column: span 5; grid-row: span 2; }
-  .ko-tile-b { grid-column: span 4; grid-row: span 1; }
-  .ko-tile-c { grid-column: span 3; grid-row: span 1; }
-  .ko-tile-d { grid-column: span 4; grid-row: span 2; }
-  .ko-tile-e { grid-column: span 3; grid-row: span 1; }
-  .ko-tile-f { grid-column: span 5; grid-row: span 1; }
-  .ko-tile-g { grid-column: span 4; grid-row: span 1; }
-  .ko-tile-h { grid-column: span 4; grid-row: span 1; }
-  .ko-tile-i { grid-column: span 4; grid-row: span 1; }
-
-  .ko-tile-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
-  .ko-tile-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.4rem; }
-  .ko-tile-desc { font-size: 0.825rem; color: var(--text-dim); line-height: 1.55; flex: 1; }
-  .ko-tile-tag { display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 999px; margin-top: 1rem; }
-  .ko-tag-free { background: rgba(16,185,129,0.1); color: var(--green); border: 1px solid rgba(16,185,129,0.2); }
-  .ko-tag-pro { background: rgba(99,102,241,0.1); color: var(--indigo-light); border: 1px solid rgba(99,102,241,0.2); }
-
-  .ko-tile-a .ko-tile-title { font-size: 1.4rem; }
-  .ko-tile-a .ko-tile-desc { font-size: 0.9rem; }
-  .ko-glow-cyan { position: absolute; top: -40px; right: -40px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(34,211,238,0.15), transparent 70%); border-radius: 50%; pointer-events: none; }
-  .ko-glow-indigo { position: absolute; bottom: -40px; left: -40px; width: 180px; height: 180px; background: radial-gradient(circle, rgba(99,102,241,0.12), transparent 70%); border-radius: 50%; pointer-events: none; }
-  .ko-glow-purple { position: absolute; top: -40px; right: -40px; width: 160px; height: 160px; background: radial-gradient(circle, rgba(168,85,247,0.12), transparent 70%); border-radius: 50%; pointer-events: none; }
-
-  .ko-terminal { background: #0a0f1e; border-radius: 10px; padding: 1rem; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.78rem; flex: 1; border: 1px solid rgba(255,255,255,0.05); }
-  .ko-terminal-bar { display: flex; gap: 6px; margin-bottom: 0.75rem; }
-  .ko-terminal-bar span { width: 10px; height: 10px; border-radius: 50%; }
-  .ko-dot-r { background: #ff5f57; }
-  .ko-dot-y { background: #febc2e; }
-  .ko-dot-g { background: #28c840; }
-  .ko-terminal-line { color: #64748b; line-height: 1.8; }
-  .ko-terminal-line .cmd { color: var(--cyan); }
-  .ko-terminal-line .ok { color: var(--green); }
-  .ko-terminal-line .path { color: var(--purple); }
-
-  .ko-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; flex: 1; }
-  .ko-metric { background: rgba(255,255,255,0.03); border-radius: 10px; padding: 0.75rem; }
-  .ko-metric-val { font-size: 1.4rem; font-weight: 800; color: var(--text); }
-  .ko-metric-label { font-size: 0.72rem; color: var(--text-dimmer); margin-top: 0.15rem; }
-  .ko-metric-val.cyan { color: var(--cyan); }
-  .ko-metric-val.purple { color: var(--purple); }
-  .ko-metric-val.green { color: var(--green); }
-  .ko-metric-val.pink { color: var(--pink); }
-
-  /* SECTION LABEL */
-  .ko-section-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--indigo-light); margin-bottom: 0.75rem; }
-  .ko-section-heading { font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 800; letter-spacing: -0.02em; color: var(--text); margin-bottom: 1rem; }
-  .ko-section-sub { color: var(--text-dim); font-size: 1rem; max-width: 500px; line-height: 1.7; }
-
-  /* HOW IT WORKS */
-  .ko-how { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-  .ko-steps { display: flex; flex-direction: column; gap: 0; }
-  .ko-step { display: flex; gap: 1.5rem; padding: 1.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); position: relative; }
-  .ko-step:last-child { border-bottom: none; }
-  .ko-step-num { width: 36px; height: 36px; border-radius: 10px; background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.25); color: var(--indigo-light); font-weight: 800; font-size: 0.9rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .ko-step-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.3rem; }
-  .ko-step-desc { font-size: 0.875rem; color: var(--text-dim); line-height: 1.6; }
-  .ko-code-block { background: var(--card); border: 1px solid var(--card-border); border-radius: 18px; padding: 1.75rem; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.82rem; }
-  .ko-code-header { display: flex; align-items: center; gap: 6px; margin-bottom: 1.25rem; }
-  .ko-code-header span { width: 10px; height: 10px; border-radius: 50%; }
-  .ko-code-line { color: var(--text-dimmer); line-height: 2; }
-  .ko-code-line .c { color: var(--text-dimmer); }
-  .ko-code-line .kw { color: var(--purple); }
-  .ko-code-line .str { color: var(--cyan); }
-  .ko-code-line .num { color: var(--green); }
-  .ko-code-line .fn { color: var(--indigo-light); }
-
-  /* INTEGRATIONS */
-  .ko-integrations { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; text-align: center; }
-  .ko-chips { display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; margin-top: 2.5rem; }
-  .ko-chip { display: flex; align-items: center; gap: 0.6rem; background: var(--card); border: 1px solid var(--card-border); color: var(--text-dim); padding: 0.6rem 1.1rem; border-radius: 999px; font-size: 0.875rem; font-weight: 500; transition: border-color 0.2s, color 0.2s; }
-  .ko-chip:hover { border-color: var(--card-hover); color: var(--text); }
-  .ko-chip-icon { font-size: 1rem; }
-
-  /* PRICING */
-  .ko-pricing { max-width: 1100px; margin: 0 auto; padding: 5rem 2rem; }
-  .ko-pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 3rem; }
-  .ko-plan { background: var(--card); border: 1px solid var(--card-border); border-radius: 18px; padding: 2rem; position: relative; transition: border-color 0.2s; }
-  .ko-plan:hover { border-color: var(--card-hover); }
-  .ko-plan-featured { border-color: rgba(99,102,241,0.4); background: linear-gradient(135deg, rgba(99,102,241,0.08) 0%, rgba(168,85,247,0.05) 100%); }
-  .ko-plan-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--indigo), var(--purple)); color: #fff; font-size: 0.7rem; font-weight: 700; padding: 0.25rem 0.9rem; border-radius: 999px; letter-spacing: 0.05em; white-space: nowrap; }
-  .ko-plan-tier { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); margin-bottom: 0.5rem; }
-  .ko-plan-price { font-size: 2.5rem; font-weight: 900; color: var(--text); letter-spacing: -0.04em; margin-bottom: 0.25rem; }
-  .ko-plan-price-sub { font-size: 0.8rem; color: var(--text-dimmer); margin-bottom: 1.5rem; }
-  .ko-plan-features { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2rem; }
-  .ko-plan-features li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.875rem; color: var(--text-dim); }
-  .ko-plan-features li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 0.05rem; }
-  .ko-plan-features li.dim::before { content: '—'; color: var(--text-dimmer); }
-  .ko-plan-features li.dim { color: var(--text-dimmer); }
-  .ko-plan-btn { display: block; text-align: center; padding: 0.75rem; border-radius: 10px; font-weight: 700; font-size: 0.9rem; transition: opacity 0.15s; }
-  .ko-plan-btn-outline { border: 1px solid rgba(99,102,241,0.3); color: var(--indigo-light); }
-  .ko-plan-btn-outline:hover { background: rgba(99,102,241,0.08); }
-  .ko-plan-btn-filled { background: linear-gradient(135deg, var(--indigo), #4f46e5); color: #fff; box-shadow: 0 0 20px rgba(99,102,241,0.3); }
-  .ko-plan-btn-filled:hover { opacity: 0.9; }
-
-  /* CTA */
-  .ko-cta { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem 6rem; }
-  .ko-cta-inner { background: linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(168,85,247,0.08) 50%, rgba(34,211,238,0.06) 100%); border: 1px solid rgba(99,102,241,0.2); border-radius: 24px; padding: 4rem; text-align: center; position: relative; overflow: hidden; }
-  .ko-cta-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 500px; height: 300px; background: radial-gradient(ellipse, rgba(99,102,241,0.12), transparent 70%); pointer-events: none; }
-  .ko-cta h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 900; letter-spacing: -0.03em; margin-bottom: 1rem; position: relative; }
-  .ko-cta p { color: var(--text-dim); font-size: 1rem; margin-bottom: 2.5rem; position: relative; }
-  .ko-cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
-
-  /* FOOTER */
-  .ko-footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 2.5rem 2rem; max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
-  .ko-footer-brand img { height: 24px; opacity: 0.7; }
-  .ko-footer-links { display: flex; gap: 2rem; }
-  .ko-footer-links a { font-size: 0.85rem; color: var(--text-dimmer); transition: color 0.15s; }
-  .ko-footer-links a:hover { color: var(--text-dim); }
-  .ko-footer-copy { font-size: 0.8rem; color: var(--text-dimmer); }
-
-  @media (max-width: 900px) {
-    .ko-bento { grid-template-columns: repeat(6, 1fr); grid-auto-rows: 180px; }
-    .ko-tile-a { grid-column: span 6; grid-row: span 2; }
-    .ko-tile-b, .ko-tile-c, .ko-tile-d, .ko-tile-e, .ko-tile-f, .ko-tile-g, .ko-tile-h, .ko-tile-i { grid-column: span 3; grid-row: span 1; }
-    .ko-how { grid-template-columns: 1fr; gap: 2.5rem; }
-    .ko-pricing-grid { grid-template-columns: 1fr; }
+  body, html, #__next,
+  [class*="Page"], [class*="content"],
+  [class*="ContentWrapper"], [class*="PageContent"],
+  [class*="main"], main {
+    background: var(--k-bg) !important;
   }
-  @media (max-width: 600px) {
-    .ko-nav-links { display: none; }
-    .ko-bento { grid-template-columns: 1fr 1fr; }
-    .ko-tile-a { grid-column: span 2; }
-    .ko-tile-b, .ko-tile-c, .ko-tile-d, .ko-tile-e, .ko-tile-f, .ko-tile-g, .ko-tile-h, .ko-tile-i { grid-column: span 1; }
-    .ko-hero h1 { font-size: 2.4rem; }
-  }
+
+  .k-page { background: var(--k-bg); color: var(--k-text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6; }
+  .k-page a { text-decoration: none; color: inherit; }
+
+  .k-hero { text-align: center; padding: 5rem 2rem 4rem; max-width: 860px; margin: 0 auto; }
+  .k-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.25); color: var(--k-indigo2); border-radius: 999px; padding: 0.35rem 1rem; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.75rem; }
+  .k-badge-dot { width: 6px; height: 6px; background: var(--k-cyan); border-radius: 50%; box-shadow: 0 0 8px var(--k-cyan); }
+  .k-hero h1 { font-size: clamp(2.6rem, 6vw, 4.5rem); font-weight: 900; line-height: 1.07; letter-spacing: -0.03em; margin-bottom: 1.5rem; color: var(--k-text); }
+  .k-grad { background: linear-gradient(135deg, var(--k-indigo2) 0%, var(--k-cyan) 55%, var(--k-purple) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .k-hero-sub { font-size: 1.1rem; color: var(--k-muted); max-width: 560px; margin: 0 auto 2.5rem; line-height: 1.75; }
+  .k-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 4rem; }
+  .k-btn-primary { background: linear-gradient(135deg, var(--k-indigo), #4f46e5); color: #fff !important; padding: 0.9rem 2.2rem; border-radius: 10px; font-weight: 700; font-size: 1rem; box-shadow: 0 0 30px rgba(99,102,241,0.4); transition: box-shadow 0.2s; }
+  .k-btn-primary:hover { box-shadow: 0 0 50px rgba(99,102,241,0.6); }
+  .k-btn-ghost { background: rgba(255,255,255,0.04); color: var(--k-muted) !important; padding: 0.9rem 2.2rem; border-radius: 10px; font-weight: 600; font-size: 1rem; border: 1px solid rgba(255,255,255,0.1); transition: border-color 0.2s, color 0.2s; }
+  .k-btn-ghost:hover { border-color: rgba(99,102,241,0.4); color: var(--k-text) !important; }
+  .k-stats { display: flex; justify-content: center; gap: 0; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 2.5rem; }
+  .k-stat { padding: 0 2.5rem; border-right: 1px solid rgba(255,255,255,0.07); }
+  .k-stat:last-child { border-right: none; }
+  .k-stat-num { font-size: 1.6rem; font-weight: 800; color: var(--k-text); }
+  .k-stat-label { font-size: 0.78rem; color: var(--k-dimmer); margin-top: 0.15rem; }
+
+  .k-section { padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; }
+  .k-section-center { text-align: center; }
+  .k-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--k-indigo2); margin-bottom: 0.75rem; }
+  .k-h2 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 800; letter-spacing: -0.02em; color: var(--k-text); margin-bottom: 1rem; }
+  .k-sub { color: var(--k-muted); font-size: 1rem; max-width: 520px; line-height: 1.75; }
+
+  .k-portals { background: var(--k-bg2); border-top: 1px solid rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .k-portals-inner { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; }
+  .k-portal-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 3rem; }
+  .k-portal-card { background: var(--k-card); border: 1px solid var(--k-border); border-radius: 16px; padding: 1.5rem; transition: border-color 0.2s, transform 0.18s; position: relative; overflow: hidden; }
+  .k-portal-card:hover { transform: translateY(-3px); }
+  .k-portal-card.free:hover { border-color: rgba(16,185,129,0.4); }
+  .k-portal-card.pro:hover { border-color: rgba(99,102,241,0.5); }
+  .k-card-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
+  .k-card-title { font-size: 0.95rem; font-weight: 700; color: var(--k-text); margin-bottom: 0.4rem; }
+  .k-card-desc { font-size: 0.8rem; color: var(--k-muted); line-height: 1.55; margin-bottom: 1rem; }
+  .k-tier-badge { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 0.18rem 0.55rem; border-radius: 999px; }
+  .k-tier-free { background: rgba(16,185,129,0.1); color: var(--k-green); border: 1px solid rgba(16,185,129,0.2); }
+  .k-tier-pro { background: rgba(99,102,241,0.1); color: var(--k-indigo2); border: 1px solid rgba(99,102,241,0.2); }
+  .k-portal-divider { grid-column: 1 / -1; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--k-dimmer); padding: 0.5rem 0 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.05); margin-top: 0.5rem; }
+  .k-portal-divider.pro-divider { color: var(--k-indigo); border-bottom-color: rgba(99,102,241,0.15); }
+
+  .k-how { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .k-steps { display: flex; flex-direction: column; gap: 0; margin-top: 2.5rem; }
+  .k-step { display: flex; gap: 1.25rem; padding: 1.25rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .k-step:last-child { border-bottom: none; }
+  .k-step-num { width: 34px; height: 34px; border-radius: 9px; background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.25); color: var(--k-indigo2); font-weight: 800; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .k-step-title { font-size: 0.95rem; font-weight: 700; color: var(--k-text); margin-bottom: 0.25rem; }
+  .k-step-desc { font-size: 0.82rem; color: var(--k-muted); line-height: 1.6; }
+
+  .k-terminal { background: #070c18; border: 1px solid rgba(99,102,241,0.2); border-radius: 14px; overflow: hidden; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.8rem; }
+  .k-term-bar { background: #0c1221; border-bottom: 1px solid rgba(255,255,255,0.05); padding: 0.75rem 1rem; display: flex; gap: 6px; align-items: center; }
+  .k-term-bar span { width: 11px; height: 11px; border-radius: 50%; }
+  .k-dot-r { background: #ff5f57; }
+  .k-dot-y { background: #febc2e; }
+  .k-dot-g { background: #28c840; }
+  .k-term-body { padding: 1.25rem 1.5rem; }
+  .k-tl { line-height: 2; }
+  .k-tl .cm { color: #475569; }
+  .k-tl .fn { color: var(--k-cyan); }
+  .k-tl .kw { color: var(--k-purple); }
+  .k-tl .st { color: var(--k-indigo2); }
+
+  .k-integrations { text-align: center; }
+  .k-chips { display: flex; flex-wrap: wrap; gap: 0.65rem; justify-content: center; margin-top: 2.5rem; }
+  .k-chip { display: flex; align-items: center; gap: 0.5rem; background: var(--k-card); border: 1px solid var(--k-border); color: var(--k-muted); padding: 0.55rem 1rem; border-radius: 999px; font-size: 0.85rem; font-weight: 500; transition: border-color 0.18s, color 0.18s; }
+  .k-chip:hover { border-color: rgba(99,102,241,0.4); color: var(--k-text); }
+
+  .k-pricing { background: var(--k-bg2); border-top: 1px solid rgba(255,255,255,0.04); }
+  .k-pricing-inner { max-width: 1100px; margin: 0 auto; padding: 5rem 2rem; }
+  .k-price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 3rem; }
+  .k-plan { background: var(--k-card); border: 1px solid var(--k-border); border-radius: 18px; padding: 2rem; position: relative; transition: border-color 0.2s; }
+  .k-plan:hover { border-color: rgba(99,102,241,0.35); }
+  .k-plan-featured { border-color: rgba(99,102,241,0.4) !important; background: linear-gradient(145deg, rgba(99,102,241,0.09) 0%, rgba(168,85,247,0.05) 100%); }
+  .k-plan-star { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, var(--k-indigo), var(--k-purple)); color: #fff; font-size: 0.68rem; font-weight: 700; padding: 0.2rem 0.85rem; border-radius: 999px; white-space: nowrap; }
+  .k-plan-tier { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--k-muted); margin-bottom: 0.5rem; }
+  .k-plan-price { font-size: 2.4rem; font-weight: 900; color: var(--k-text); letter-spacing: -0.04em; margin-bottom: 0.2rem; }
+  .k-plan-sub { font-size: 0.78rem; color: var(--k-dimmer); margin-bottom: 1.75rem; }
+  .k-plan-features { list-style: none; padding: 0; margin: 0 0 2rem; display: flex; flex-direction: column; gap: 0.55rem; }
+  .k-plan-features li { display: flex; gap: 0.6rem; font-size: 0.85rem; color: var(--k-muted); align-items: flex-start; }
+  .k-plan-features li::before { content: '✓'; color: var(--k-green); font-weight: 700; flex-shrink: 0; }
+  .k-plan-features li.off::before { content: '—'; color: var(--k-dimmer); }
+  .k-plan-features li.off { color: var(--k-dimmer); }
+  .k-plan-btn { display: block; text-align: center; padding: 0.75rem; border-radius: 10px; font-weight: 700; font-size: 0.9rem; transition: opacity 0.15s; }
+  .k-plan-btn-outline { border: 1px solid rgba(99,102,241,0.3); color: var(--k-indigo2) !important; }
+  .k-plan-btn-outline:hover { background: rgba(99,102,241,0.08); }
+  .k-plan-btn-fill { background: linear-gradient(135deg, var(--k-indigo), #4f46e5); color: #fff !important; box-shadow: 0 0 20px rgba(99,102,241,0.3); }
+  .k-plan-btn-fill:hover { opacity: 0.9; }
+
+  .k-cta-wrap { padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; }
+  .k-cta { background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(168,85,247,0.07), rgba(34,211,238,0.05)); border: 1px solid rgba(99,102,241,0.2); border-radius: 24px; padding: 4rem 2rem; text-align: center; }
+  .k-cta h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 900; letter-spacing: -0.03em; margin-bottom: 0.75rem; }
+  .k-cta p { color: var(--k-muted); margin-bottom: 2.25rem; }
+  .k-cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  .k-footer { border-top: 1px solid rgba(255,255,255,0.05); max-width: 1200px; margin: 0 auto; padding: 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .k-footer img { height: 22px; opacity: 0.6; }
+  .k-footer-links { display: flex; gap: 2rem; }
+  .k-footer-links a { font-size: 0.82rem; color: var(--k-dimmer); transition: color 0.15s; }
+  .k-footer-links a:hover { color: var(--k-muted); }
+  .k-footer-copy { font-size: 0.78rem; color: var(--k-dimmer); }
+
+  @media (max-width: 1024px) { .k-portal-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 768px) { .k-how { grid-template-columns: 1fr; gap: 2.5rem; } .k-price-grid { grid-template-columns: 1fr; } .k-stat { padding: 1rem 1.5rem; } }
+  @media (max-width: 600px) { .k-portal-grid { grid-template-columns: 1fr; } .k-hero h1 { font-size: 2.2rem; } }
 `}</style>
 
-<div class="ko-wrap">
+<div class="k-page">
 
-<nav class="ko-nav">
-  <div class="ko-nav-logo">
-    <img src="/logo/logo.png" alt="Krado One" />
-  </div>
-  <div class="ko-nav-links">
-    <a href="#portals">Portals</a>
-    <a href="#how-it-works">How it works</a>
-    <a href="#integrations">Integrations</a>
-    <a href="#pricing">Pricing</a>
-    <a href="/docs" class="ko-nav-cta">Documentation</a>
-  </div>
-</nav>
-
-<section class="ko-hero">
-  <div class="ko-hero-eyebrow">
-    <span></span>
+<div class="k-hero">
+  <div class="k-badge">
+    <span class="k-badge-dot"></span>
     Internal Developer Platform
   </div>
-  <h1>Your entire engineering<br /><span class="ko-grad">workflow, one platform</span></h1>
-  <p class="ko-hero-sub">
-    Self-hosted portals for tasks, incidents, service catalog, runbooks, cloud visibility,
-    and more — deployed in minutes, owned by you forever.
+  <h1>One platform for every<br /><span class="k-grad">engineering workflow</span></h1>
+  <p class="k-hero-sub">
+    Self-hosted portals for tasks, incidents, service catalog, runbooks,
+    cloud visibility, and more — deployed in minutes, owned by you forever.
   </p>
-  <div class="ko-hero-actions">
-    <a href="/docs/getting-started/quickstart" class="ko-btn-primary">Get started free →</a>
-    <a href="https://github.com/sir-vikk/krado-one" class="ko-btn-ghost">View on GitHub</a>
+  <div class="k-actions">
+    <a href="/docs/getting-started/quickstart" class="k-btn-primary">Get started free →</a>
+    <a href="https://github.com/sir-vikk/krado-one" class="k-btn-ghost">View on GitHub</a>
   </div>
-  <div class="ko-stats">
-    <div>
-      <div class="ko-stat-num">10+</div>
-      <div class="ko-stat-label">Built-in portals</div>
+  <div class="k-stats">
+    <div class="k-stat">
+      <div class="k-stat-num">10+</div>
+      <div class="k-stat-label">Built-in portals</div>
     </div>
-    <div>
-      <div class="ko-stat-num">Self-hosted</div>
-      <div class="ko-stat-label">Your infra, your data</div>
+    <div class="k-stat">
+      <div class="k-stat-num">Self-hosted</div>
+      <div class="k-stat-label">Your infra, your data</div>
     </div>
-    <div>
-      <div class="ko-stat-num">$0</div>
-      <div class="ko-stat-label">Free community edition</div>
+    <div class="k-stat">
+      <div class="k-stat-num">$0</div>
+      <div class="k-stat-label">Free community edition</div>
     </div>
-    <div>
-      <div class="ko-stat-num">Go + React</div>
-      <div class="ko-stat-label">Single binary + SPA</div>
-    </div>
-  </div>
-</section>
-
-<div id="portals" class="ko-bento">
-
-  <div class="ko-tile ko-tile-a">
-    <div class="ko-glow-indigo"></div>
-    <div>
-      <div class="ko-tile-icon">✅</div>
-      <div class="ko-tile-title">Task Management</div>
-      <p class="ko-tile-desc">Kanban board with drag-and-drop, priority badges, due dates, JIRA two-way sync, Slack & email scanning. Everything in one personal work hub.</p>
-    </div>
-    <div>
-      <div class="ko-metrics">
-        <div class="ko-metric">
-          <div class="ko-metric-val cyan">24</div>
-          <div class="ko-metric-label">Open tasks</div>
-        </div>
-        <div class="ko-metric">
-          <div class="ko-metric-val green">12</div>
-          <div class="ko-metric-label">Done today</div>
-        </div>
-      </div>
-      <div class="ko-tile-tag ko-tag-free">Free</div>
+    <div class="k-stat">
+      <div class="k-stat-num">Go + React</div>
+      <div class="k-stat-label">Single binary + SPA</div>
     </div>
   </div>
-
-  <div class="ko-tile ko-tile-b">
-    <div class="ko-glow-purple"></div>
-    <div>
-      <div class="ko-tile-icon">🚨</div>
-      <div class="ko-tile-title">DRM / Incident Tracker</div>
-      <p class="ko-tile-desc">Full incident lifecycle — RCA, timelines, action items, affected products & customers, maintenance windows.</p>
-    </div>
-    <div class="ko-tile-tag ko-tag-free">Free</div>
-  </div>
-
-  <div class="ko-tile ko-tile-c">
-    <div>
-      <div class="ko-tile-icon">⚙️</div>
-      <div class="ko-tile-title">DevX Portal</div>
-      <p class="ko-tile-desc">Service catalog, golden path, DORA metrics, scorecards, dependency graph.</p>
-    </div>
-    <div class="ko-tile-tag ko-tag-free">Free</div>
-  </div>
-
-  <div class="ko-tile ko-tile-d">
-    <div class="ko-glow-cyan"></div>
-    <div>
-      <div class="ko-tile-icon">📋</div>
-      <div class="ko-tile-title">Runbook Portal</div>
-      <p class="ko-tile-desc">Step-based runbooks with HTTP, Shell, Jira, Slack, and MCP steps. AI-powered selection, webhook triggers, live execution output.</p>
-    </div>
-    <div>
-      <div class="ko-terminal">
-        <div class="ko-terminal-bar"><span class="ko-dot-r"></span><span class="ko-dot-y"></span><span class="ko-dot-g"></span></div>
-        <div class="ko-terminal-line"><span class="ok">✓</span> Step 1: health-check <span class="ok">200 OK</span></div>
-        <div class="ko-terminal-line"><span class="ok">✓</span> Step 2: drain-traffic <span class="ok">done</span></div>
-        <div class="ko-terminal-line"><span class="cmd">▶</span> Step 3: deploy-patch <span class="path">running…</span></div>
-      </div>
-      <div class="ko-tile-tag ko-tag-pro">Pro</div>
-    </div>
-  </div>
-
-  <div class="ko-tile ko-tile-e">
-    <div>
-      <div class="ko-tile-icon">⚡</div>
-      <div class="ko-tile-title">Platform Engineering</div>
-      <p class="ko-tile-desc">Tech radar, CI/CD pipelines, API catalog, change requests, status page.</p>
-    </div>
-    <div class="ko-tile-tag ko-tag-free">Free</div>
-  </div>
-
-  <div class="ko-tile ko-tile-f">
-    <div class="ko-glow-indigo"></div>
-    <div>
-      <div class="ko-tile-icon">☁️</div>
-      <div class="ko-tile-title">Multi-Cloud & FinOps</div>
-      <p class="ko-tile-desc">AWS / GCP / Azure resource inventory, cost breakdown, budget alerts, team allocation — one pane for your entire cloud estate.</p>
-    </div>
-    <div class="ko-tile-tag ko-tag-pro">Pro</div>
-  </div>
-
-  <div class="ko-tile ko-tile-g">
-    <div>
-      <div class="ko-tile-icon">🛡️</div>
-      <div class="ko-tile-title">Security & Compliance</div>
-      <p class="ko-tile-desc">CVE tracking, secrets rotation inventory, SOC 2 / ISO 27001 controls with evidence mapping.</p>
-    </div>
-    <div class="ko-tile-tag ko-tag-pro">Pro</div>
-  </div>
-
-  <div class="ko-tile ko-tile-h">
-    <div class="ko-glow-purple"></div>
-    <div>
-      <div class="ko-tile-icon">🤖</div>
-      <div class="ko-tile-title">AI Assistant</div>
-      <p class="ko-tile-desc">OpenAI-powered chatbot with full session history. Ask about services, trigger runbooks, get instant answers.</p>
-    </div>
-    <div class="ko-tile-tag ko-tag-pro">Pro</div>
-  </div>
-
-  <div class="ko-tile ko-tile-i">
-    <div>
-      <div class="ko-tile-icon">🔑</div>
-      <div class="ko-tile-title">SSO & Access Control</div>
-      <p class="ko-tile-desc">SAML / OIDC providers, RBAC, audit log, API keys, and plugin extensions.</p>
-    </div>
-    <div class="ko-tile-tag ko-tag-pro">Pro</div>
-  </div>
-
 </div>
 
-<section id="how-it-works" class="ko-how">
-  <div>
-    <div class="ko-section-label">How it works</div>
-    <h2 class="ko-section-heading">Up and running<br />in minutes</h2>
-    <p class="ko-section-sub">One Docker compose file. No cloud account, no build toolchain, no external dependencies at minimum config.</p>
-    <div class="ko-steps" style="margin-top: 2.5rem">
-      <div class="ko-step">
-        <div class="ko-step-num">1</div>
-        <div>
-          <div class="ko-step-title">Pull the Docker image</div>
-          <p class="ko-step-desc">One compose file. No Node or Go runtime needed on your host.</p>
-        </div>
+<div class="k-portals">
+  <div class="k-portals-inner">
+    <div class="k-section-center">
+      <div class="k-label">Portals</div>
+      <h2 class="k-h2">Everything your team needs</h2>
+      <p class="k-sub" style="margin: 0 auto">10+ built-in portals ready on day one. No integrations to stitch together.</p>
+    </div>
+    <div class="k-portal-grid">
+      <div class="k-portal-divider">Free — Community Edition</div>
+      <div class="k-portal-card free">
+        <div class="k-card-icon">✅</div>
+        <div class="k-card-title">Task Management</div>
+        <p class="k-card-desc">Kanban board, JIRA two-way sync, Slack scanning, priority badges, task stats.</p>
+        <span class="k-tier-badge k-tier-free">Free</span>
       </div>
-      <div class="ko-step">
-        <div class="ko-step-num">2</div>
-        <div>
-          <div class="ko-step-title">Run the setup wizard</div>
-          <p class="ko-step-desc">Create your org and owner account in under 60 seconds on first launch.</p>
-        </div>
+      <div class="k-portal-card free">
+        <div class="k-card-icon">🚨</div>
+        <div class="k-card-title">DRM / Incident Tracker</div>
+        <p class="k-card-desc">Full incident lifecycle — RCA, timelines, action items, affected products, maintenance windows.</p>
+        <span class="k-tier-badge k-tier-free">Free</span>
       </div>
-      <div class="ko-step">
-        <div class="ko-step-num">3</div>
-        <div>
-          <div class="ko-step-title">Configure integrations</div>
-          <p class="ko-step-desc">Connect Jira, Slack, GitHub, and cloud providers via env vars or Portal Config.</p>
-        </div>
+      <div class="k-portal-card free">
+        <div class="k-card-icon">⚙️</div>
+        <div class="k-card-title">DevX Portal</div>
+        <p class="k-card-desc">Service catalog, golden path templates, DORA metrics, scorecards, dependency graph.</p>
+        <span class="k-tier-badge k-tier-free">Free</span>
       </div>
-      <div class="ko-step">
-        <div class="ko-step-num">4</div>
-        <div>
-          <div class="ko-step-title">Invite your team</div>
-          <p class="ko-step-desc">Add members, assign roles, and enable the portals your team needs.</p>
-        </div>
+      <div class="k-portal-card free">
+        <div class="k-card-icon">⚡</div>
+        <div class="k-card-title">Platform Engineering</div>
+        <p class="k-card-desc">Tech radar, CI/CD pipelines, API catalog, change requests, status page, onboarding.</p>
+        <span class="k-tier-badge k-tier-free">Free</span>
+      </div>
+      <div class="k-portal-divider pro-divider">Pro — License Key Required</div>
+      <div class="k-portal-card pro">
+        <div class="k-card-icon">📋</div>
+        <div class="k-card-title">Runbook Portal</div>
+        <p class="k-card-desc">Step-based runbooks with HTTP, Shell, Jira, Slack, MCP steps. AI selection, live execution output.</p>
+        <span class="k-tier-badge k-tier-pro">Pro</span>
+      </div>
+      <div class="k-portal-card pro">
+        <div class="k-card-icon">☁️</div>
+        <div class="k-card-title">Multi-Cloud &amp; FinOps</div>
+        <p class="k-card-desc">AWS / GCP / Azure resource inventory, cost breakdown, budget alerts, team allocation.</p>
+        <span class="k-tier-badge k-tier-pro">Pro</span>
+      </div>
+      <div class="k-portal-card pro">
+        <div class="k-card-icon">🛡️</div>
+        <div class="k-card-title">Security &amp; Compliance</div>
+        <p class="k-card-desc">CVE tracking, secrets rotation inventory, SOC 2 / ISO 27001 controls with evidence mapping.</p>
+        <span class="k-tier-badge k-tier-pro">Pro</span>
+      </div>
+      <div class="k-portal-card pro">
+        <div class="k-card-icon">🤖</div>
+        <div class="k-card-title">AI Assistant + SSO</div>
+        <p class="k-card-desc">OpenAI-powered chatbot with session history. SAML / OIDC SSO, RBAC, audit log.</p>
+        <span class="k-tier-badge k-tier-pro">Pro</span>
       </div>
     </div>
   </div>
-  <div class="ko-code-block">
-    <div class="ko-code-header">
-      <span class="ko-dot-r"></span><span class="ko-dot-y"></span><span class="ko-dot-g"></span>
-    </div>
-    <div class="ko-code-line"><span class="c"># 1. grab the compose file</span></div>
-    <div class="ko-code-line"><span class="fn">curl</span> -o docker-compose.yml &#92;</div>
-    <div class="ko-code-line">&#160;&#160;https://raw.githubusercontent.com/</div>
-    <div class="ko-code-line">&#160;&#160;sir-vikk/krado-one/main/deploy/</div>
-    <div class="ko-code-line">&#160;&#160;docker/docker-compose.yml</div>
-    <div class="ko-code-line" style="margin-top: 0.5rem"><span class="c"># 2. start everything</span></div>
-    <div class="ko-code-line"><span class="fn">docker</span> compose <span class="kw">up</span> -d</div>
-    <div class="ko-code-line" style="margin-top: 0.5rem"><span class="c"># 3. open the setup wizard</span></div>
-    <div class="ko-code-line"><span class="fn">open</span> <span class="str">http://localhost</span></div>
-    <div class="ko-code-line" style="margin-top: 0.75rem; color: #10b981">✓ Krado One is ready</div>
-  </div>
-</section>
+</div>
 
-<section id="integrations" class="ko-integrations">
-  <div class="ko-section-label">Integrations</div>
-  <h2 class="ko-section-heading">Connects to your stack</h2>
-  <p class="ko-section-sub" style="margin: 0 auto">Configure via environment variables or Portal Config. No webhook gymnastics.</p>
-  <div class="ko-chips">
-    <div class="ko-chip"><span class="ko-chip-icon">🔵</span>Jira</div>
-    <div class="ko-chip"><span class="ko-chip-icon">💬</span>Slack</div>
-    <div class="ko-chip"><span class="ko-chip-icon">🐙</span>GitHub</div>
-    <div class="ko-chip"><span class="ko-chip-icon">🟡</span>PagerDuty</div>
-    <div class="ko-chip"><span class="ko-chip-icon">☁️</span>AWS</div>
-    <div class="ko-chip"><span class="ko-chip-icon">🔷</span>Azure</div>
-    <div class="ko-chip"><span class="ko-chip-icon">🟠</span>Google Cloud</div>
-    <div class="ko-chip"><span class="ko-chip-icon">🤖</span>OpenAI</div>
-    <div class="ko-chip"><span class="ko-chip-icon">🔑</span>HashiCorp Vault</div>
-    <div class="ko-chip"><span class="ko-chip-icon">🏗️</span>Terraform</div>
-    <div class="ko-chip"><span class="ko-chip-icon">⚙️</span>Kubernetes</div>
-    <div class="ko-chip"><span class="ko-chip-icon">🔗</span>MCP Servers</div>
-    <div class="ko-chip"><span class="ko-chip-icon">📊</span>Grafana</div>
-    <div class="ko-chip"><span class="ko-chip-icon">🔒</span>SAML / OIDC SSO</div>
+<div class="k-section">
+  <div class="k-how">
+    <div>
+      <div class="k-label">How it works</div>
+      <h2 class="k-h2">Up and running<br />in minutes</h2>
+      <p class="k-sub">One Docker compose file. No cloud account, no build toolchain, no external dependencies at minimum config.</p>
+      <div class="k-steps">
+        <div class="k-step">
+          <div class="k-step-num">1</div>
+          <div>
+            <div class="k-step-title">Pull the Docker image</div>
+            <p class="k-step-desc">One compose file. No Node or Go runtime needed on your host.</p>
+          </div>
+        </div>
+        <div class="k-step">
+          <div class="k-step-num">2</div>
+          <div>
+            <div class="k-step-title">Run the setup wizard</div>
+            <p class="k-step-desc">Create your org and owner account in under 60 seconds on first launch.</p>
+          </div>
+        </div>
+        <div class="k-step">
+          <div class="k-step-num">3</div>
+          <div>
+            <div class="k-step-title">Configure integrations</div>
+            <p class="k-step-desc">Connect Jira, Slack, GitHub, and cloud providers via env vars or Portal Config.</p>
+          </div>
+        </div>
+        <div class="k-step">
+          <div class="k-step-num">4</div>
+          <div>
+            <div class="k-step-title">Invite your team</div>
+            <p class="k-step-desc">Add members, assign roles, and enable the portals your team needs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="k-terminal">
+      <div class="k-term-bar">
+        <span class="k-dot-r"></span>
+        <span class="k-dot-y"></span>
+        <span class="k-dot-g"></span>
+      </div>
+      <div class="k-term-body">
+        <div class="k-tl"><span class="cm"># 1. grab the compose file</span></div>
+        <div class="k-tl"><span class="fn">curl</span> -o docker-compose.yml &#92;</div>
+        <div class="k-tl">&#160;&#160;https://raw.githubusercontent.com/</div>
+        <div class="k-tl">&#160;&#160;sir-vikk/krado-one/main/deploy/</div>
+        <div class="k-tl">&#160;&#160;docker/docker-compose.yml</div>
+        <div class="k-tl" style="margin-top:0.5rem"><span class="cm"># 2. start everything</span></div>
+        <div class="k-tl"><span class="fn">docker</span> compose <span class="kw">up</span> -d</div>
+        <div class="k-tl" style="margin-top:0.5rem"><span class="cm"># 3. open the setup wizard</span></div>
+        <div class="k-tl"><span class="fn">open</span> <span class="st">http://localhost</span></div>
+        <div class="k-tl" style="margin-top:0.75rem; color:#10b981">&#10003; Krado One is ready</div>
+      </div>
+    </div>
   </div>
-</section>
+</div>
 
-<section id="pricing" class="ko-pricing">
-  <div style="text-align: center">
-    <div class="ko-section-label">Pricing</div>
-    <h2 class="ko-section-heading">Simple, transparent pricing</h2>
-    <p class="ko-section-sub" style="margin: 0 auto">Start free, upgrade when you need more. No surprises.</p>
+<div class="k-section k-integrations">
+  <div class="k-label">Integrations</div>
+  <h2 class="k-h2">Connects to your stack</h2>
+  <p class="k-sub" style="margin: 0 auto">Configure via environment variables or Portal Config — no webhook gymnastics.</p>
+  <div class="k-chips">
+    <div class="k-chip">🔵 Jira</div>
+    <div class="k-chip">💬 Slack</div>
+    <div class="k-chip">🐙 GitHub</div>
+    <div class="k-chip">🟡 PagerDuty</div>
+    <div class="k-chip">☁️ AWS</div>
+    <div class="k-chip">🔷 Azure</div>
+    <div class="k-chip">🟠 Google Cloud</div>
+    <div class="k-chip">🤖 OpenAI</div>
+    <div class="k-chip">🔑 HashiCorp Vault</div>
+    <div class="k-chip">🏗️ Terraform</div>
+    <div class="k-chip">⚙️ Kubernetes</div>
+    <div class="k-chip">🔗 MCP Servers</div>
+    <div class="k-chip">📊 Grafana</div>
+    <div class="k-chip">🔒 SAML / OIDC</div>
   </div>
-  <div class="ko-pricing-grid">
-    <div class="ko-plan">
-      <div class="ko-plan-tier">Free</div>
-      <div class="ko-plan-price">$0</div>
-      <div class="ko-plan-price-sub">Self-hosted · no license key</div>
-      <ul class="ko-plan-features">
-        <li>Task Management & JIRA sync</li>
-        <li>DRM / Incident Tracker</li>
-        <li>DevX Portal & Service Catalog</li>
-        <li>Platform Engineering portal</li>
-        <li>DORA Metrics & Scorecards</li>
-        <li>Unlimited users</li>
-        <li>SQLite or PostgreSQL</li>
-        <li class="dim">AI Assistant</li>
-        <li class="dim">Runbook Portal</li>
-        <li class="dim">Cloud & FinOps</li>
-      </ul>
-      <a href="/docs/getting-started/quickstart" class="ko-plan-btn ko-plan-btn-outline">Get started →</a>
-    </div>
-    <div class="ko-plan ko-plan-featured">
-      <div class="ko-plan-badge">Most Popular</div>
-      <div class="ko-plan-tier">Pro</div>
-      <div class="ko-plan-price">Coming<br />Soon</div>
-      <div class="ko-plan-price-sub">Self-hosted · license key required</div>
-      <ul class="ko-plan-features">
-        <li>Everything in Free</li>
-        <li>AI Assistant (OpenAI)</li>
-        <li>Runbook Portal & MCP execution</li>
-        <li>Cloud & FinOps (AWS/GCP/Azure)</li>
-        <li>Security & Compliance portal</li>
-        <li>SSO — SAML & OIDC</li>
-        <li>ArgoCD, PagerDuty, Prometheus</li>
-        <li>Offline license validation</li>
-      </ul>
-      <a href="mailto:vivmishra3678@gmail.com" class="ko-plan-btn ko-plan-btn-filled">Get a license →</a>
-    </div>
-    <div class="ko-plan">
-      <div class="ko-plan-tier">Enterprise</div>
-      <div class="ko-plan-price">Custom</div>
-      <div class="ko-plan-price-sub">Managed cloud · we handle everything</div>
-      <ul class="ko-plan-features">
-        <li>Everything in Pro</li>
-        <li>Managed cloud deployment</li>
-        <li>Multi-org / multi-tenant</li>
-        <li>SLA & dedicated support</li>
-        <li>Custom integrations</li>
-        <li>Infra, backups & upgrades on us</li>
-      </ul>
-      <a href="mailto:vivmishra3678@gmail.com" class="ko-plan-btn ko-plan-btn-outline">Contact us →</a>
-    </div>
-  </div>
-</section>
+</div>
 
-<div class="ko-cta">
-  <div class="ko-cta-inner">
-    <div class="ko-cta-glow"></div>
+<div class="k-pricing">
+  <div class="k-pricing-inner">
+    <div class="k-section-center">
+      <div class="k-label">Pricing</div>
+      <h2 class="k-h2">Simple, transparent pricing</h2>
+      <p class="k-sub" style="margin: 0 auto">Start free, upgrade when you need more. No surprises.</p>
+    </div>
+    <div class="k-price-grid">
+      <div class="k-plan">
+        <div class="k-plan-tier">Free</div>
+        <div class="k-plan-price">$0</div>
+        <div class="k-plan-sub">Self-hosted · no license key</div>
+        <ul class="k-plan-features">
+          <li>Task Management &amp; JIRA sync</li>
+          <li>DRM / Incident Tracker</li>
+          <li>DevX Portal &amp; Service Catalog</li>
+          <li>Platform Engineering portal</li>
+          <li>DORA Metrics &amp; Scorecards</li>
+          <li>Unlimited users</li>
+          <li>SQLite or PostgreSQL</li>
+          <li class="off">AI Assistant</li>
+          <li class="off">Runbook Portal</li>
+          <li class="off">Cloud &amp; FinOps</li>
+        </ul>
+        <a href="/docs/getting-started/quickstart" class="k-plan-btn k-plan-btn-outline">Get started →</a>
+      </div>
+      <div class="k-plan k-plan-featured">
+        <div class="k-plan-star">Most Popular</div>
+        <div class="k-plan-tier">Pro</div>
+        <div class="k-plan-price">Coming Soon</div>
+        <div class="k-plan-sub">Self-hosted · license key required</div>
+        <ul class="k-plan-features">
+          <li>Everything in Free</li>
+          <li>AI Assistant (OpenAI)</li>
+          <li>Runbook Portal &amp; MCP execution</li>
+          <li>Cloud &amp; FinOps (AWS/GCP/Azure)</li>
+          <li>Security &amp; Compliance portal</li>
+          <li>SSO — SAML &amp; OIDC</li>
+          <li>ArgoCD, PagerDuty, Prometheus</li>
+          <li>Offline license validation</li>
+        </ul>
+        <a href="mailto:vivmishra3678@gmail.com" class="k-plan-btn k-plan-btn-fill">Get a license →</a>
+      </div>
+      <div class="k-plan">
+        <div class="k-plan-tier">Enterprise</div>
+        <div class="k-plan-price">Custom</div>
+        <div class="k-plan-sub">Managed cloud · we handle everything</div>
+        <ul class="k-plan-features">
+          <li>Everything in Pro</li>
+          <li>Managed cloud deployment</li>
+          <li>Multi-org / multi-tenant</li>
+          <li>SLA &amp; dedicated support</li>
+          <li>Custom integrations</li>
+          <li>Infra, backups &amp; upgrades on us</li>
+        </ul>
+        <a href="mailto:vivmishra3678@gmail.com" class="k-plan-btn k-plan-btn-outline">Contact us →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="k-cta-wrap">
+  <div class="k-cta">
     <h2>Ready to ship faster?</h2>
     <p>Pull the image, run the wizard, done. Your entire engineering workflow in one place — today.</p>
-    <div class="ko-cta-actions">
-      <a href="/docs/getting-started/quickstart" class="ko-btn-primary">Get started free →</a>
-      <a href="https://github.com/sir-vikk/krado-one" class="ko-btn-ghost">View on GitHub</a>
+    <div class="k-cta-btns">
+      <a href="/docs/getting-started/quickstart" class="k-btn-primary">Get started free →</a>
+      <a href="https://github.com/sir-vikk/krado-one" class="k-btn-ghost">View on GitHub</a>
     </div>
   </div>
 </div>
 
-<footer class="ko-footer">
-  <div class="ko-footer-brand"><img src="/logo/logo.png" alt="Krado One" /></div>
-  <div class="ko-footer-links">
+<div class="k-footer">
+  <img src="/logo/logo.png" alt="Krado One" />
+  <div class="k-footer-links">
     <a href="/docs">Docs</a>
     <a href="https://github.com/sir-vikk/krado-one">GitHub</a>
     <a href="mailto:vivmishra3678@gmail.com">Contact</a>
   </div>
-  <div class="ko-footer-copy">© 2025 Krado One</div>
-</footer>
+  <div class="k-footer-copy">&#169; 2025 Krado One</div>
+</div>
 
 </div>
