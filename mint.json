@@ -1,0 +1,133 @@
+{
+  "name": "Krado One",
+  "logo": {
+    "dark": "/logo/logo-icon.png",
+    "light": "/logo/logo-icon.png"
+  },
+  "favicon": "/logo/favicon.png",
+  "colors": {
+    "primary": "#6366f1",
+    "light": "#818cf8",
+    "dark": "#4f46e5",
+    "background": {
+      "dark": "#0f172a"
+    }
+  },
+  "topbarCtaButton": {
+    "name": "GitHub",
+    "url": "https://github.com/sir-vikk/krado-one"
+  },
+  "topbarLinks": [
+    {
+      "name": "Website",
+      "url": "https://krado-one-docs.pages.dev"
+    }
+  ],
+  "navigation": [
+    {
+      "group": "Getting Started",
+      "pages": [
+        "index",
+        "getting-started/quickstart",
+        "getting-started/docker",
+        "getting-started/installation"
+      ]
+    },
+    {
+      "group": "Concepts",
+      "pages": [
+        "concepts/editions",
+        "concepts/organization"
+      ]
+    },
+    {
+      "group": "Task Management",
+      "pages": [
+        "portals/task/dashboard",
+        "portals/task/jira-tickets"
+      ]
+    },
+    {
+      "group": "DRM Portal",
+      "pages": [
+        "portals/drm/dashboard",
+        "portals/drm/incidents",
+        "portals/drm/products",
+        "portals/drm/teams",
+        "portals/drm/customers",
+        "portals/drm/maintenance",
+        "portals/drm/reports"
+      ]
+    },
+    {
+      "group": "DevX Portal",
+      "pages": [
+        "portals/devx/service-catalog",
+        "portals/devx/golden-path",
+        "portals/devx/ops-dashboard",
+        "portals/devx/scorecards",
+        "portals/devx/dependency-graph",
+        "portals/devx/workflows"
+      ]
+    },
+    {
+      "group": "Runbook Portal",
+      "pages": [
+        "portals/runbook/runbooks",
+        "portals/runbook/create-runbook",
+        "portals/runbook/history",
+        "portals/runbook/mcp-servers",
+        "portals/runbook/ai-chat"
+      ]
+    },
+    {
+      "group": "Platform Engineering",
+      "pages": [
+        "portals/platform/overview",
+        "portals/platform/tech-radar",
+        "portals/platform/pipelines",
+        "portals/platform/api-catalog",
+        "portals/platform/change-requests",
+        "portals/platform/promotions",
+        "portals/platform/status-page",
+        "portals/platform/onboarding"
+      ]
+    },
+    {
+      "group": "Cloud & FinOps",
+      "pages": [
+        "portals/cloud/overview",
+        "portals/cloud/resources",
+        "portals/cloud/costs",
+        "portals/cloud/finops"
+      ]
+    },
+    {
+      "group": "Security & Compliance",
+      "pages": [
+        "portals/security/overview",
+        "portals/security/vulnerabilities",
+        "portals/security/secrets",
+        "portals/security/compliance"
+      ]
+    },
+    {
+      "group": "Administration",
+      "pages": [
+        "admin/users-and-roles",
+        "admin/sso",
+        "admin/feature-flags",
+        "admin/integrations"
+      ]
+    },
+    {
+      "group": "Reference",
+      "pages": [
+        "reference/configuration"
+      ]
+    }
+  ],
+  "footerSocials": {
+    "github": "https://github.com/sir-vikk/krado-one"
+  }
+}
