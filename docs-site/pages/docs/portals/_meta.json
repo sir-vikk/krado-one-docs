@@ -1,0 +1,9 @@
+{
+  "task": "Task Management",
+  "drm": "DRM Portal",
+  "devx": "DevX Portal",
+  "runbook": "Runbook Portal",
+  "platform": "Platform Engineering",
+  "cloud": "Cloud & FinOps",
+  "security": "Security & Compliance"
+}
