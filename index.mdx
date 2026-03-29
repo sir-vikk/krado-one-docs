@@ -1,53 +1,170 @@
 ---
 title: "Krado One"
-description: "A DevX Platform — self-hosted internal developer platform"
+description: "A DevX Platform — self-hosted internal developer platform for engineering teams"
+mode: "custom"
 ---
 
-<img src="/logo/logo.png" alt="Krado One" style={{ width: '320px', marginBottom: '2rem' }} />
+<div style={{ textAlign: 'center', padding: '4rem 1rem 2rem' }}>
+  <img src="/logo/logo.png" alt="Krado One" style={{ height: '64px', marginBottom: '2rem' }} />
 
-## What is Krado One?
+  <div style={{ display: 'inline-block', background: 'rgba(99,102,241,0.15)', border: '1px solid rgba(99,102,241,0.3)', color: '#818cf8', borderRadius: '999px', padding: '0.3rem 1rem', fontSize: '0.8rem', fontWeight: 600, marginBottom: '1.5rem', letterSpacing: '0.05em' }}>
+    INTERNAL DEVELOPER PLATFORM
+  </div>
 
-**Krado One** is a self-hosted internal developer platform built with React + Vite, Go + Gin, and SQLite or PostgreSQL.
+  <h1 style={{ fontSize: '3rem', fontWeight: 800, lineHeight: 1.15, margin: '0 0 1.25rem' }}>
+    One platform for every<br />
+    <span style={{ background: 'linear-gradient(135deg, #6366f1, #c084fc)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>engineering workflow</span>
+  </h1>
 
-It unifies all your engineering workflows in one place — tasks, incidents, service catalog, runbooks, cloud visibility, security, and more.
+  <p style={{ fontSize: '1.15rem', color: '#94a3b8', maxWidth: '600px', margin: '0 auto 2.5rem', lineHeight: 1.7 }}>
+    Self-hosted portals for tasks, service catalog, runbooks, incident management,
+    cloud visibility, and more — all unified under one roof.
+  </p>
 
-<CardGroup cols={2}>
-  <Card title="Quick Start" icon="rocket" href="/getting-started/quickstart">
-    Get Krado One running in under 5 minutes
-  </Card>
-  <Card title="Editions" icon="star" href="/concepts/editions">
-    Free, Pro, and Enterprise tiers explained
-  </Card>
-  <Card title="All Portals" icon="grid" href="/portals/task/dashboard">
-    Browse every portal and its features
-  </Card>
-  <Card title="Configuration" icon="gear" href="/reference/configuration">
-    Environment variables and settings reference
-  </Card>
-</CardGroup>
+  <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '3.5rem' }}>
+    <a href="/docs/getting-started/quickstart" style={{ background: '#6366f1', color: '#fff', padding: '0.75rem 2rem', borderRadius: '10px', fontWeight: 700, textDecoration: 'none', fontSize: '1rem' }}>
+      Get started free
+    </a>
+    <a href="#portals" style={{ background: 'transparent', color: '#94a3b8', padding: '0.75rem 2rem', borderRadius: '10px', fontWeight: 600, textDecoration: 'none', fontSize: '1rem', border: '1px solid #334155' }}>
+      See all portals →
+    </a>
+  </div>
 
-## Portals
+  <div style={{ display: 'flex', gap: '2.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+    <div style={{ textAlign: 'center' }}>
+      <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#f1f5f9' }}>10+</div>
+      <div style={{ fontSize: '0.8rem', color: '#64748b' }}>Built-in portals</div>
+    </div>
+    <div style={{ width: '1px', background: '#1e293b' }} />
+    <div style={{ textAlign: 'center' }}>
+      <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#f1f5f9' }}>Self-hosted</div>
+      <div style={{ fontSize: '0.8rem', color: '#64748b' }}>Your infra, your data</div>
+    </div>
+    <div style={{ width: '1px', background: '#1e293b' }} />
+    <div style={{ textAlign: 'center' }}>
+      <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#f1f5f9' }}>Free</div>
+      <div style={{ fontSize: '0.8rem', color: '#64748b' }}>Community edition</div>
+    </div>
+  </div>
+</div>
+
+---
+
+<div id="portals" />
+
+## Everything your team needs
+
+10+ built-in portals ready on day one. No integrations to stitch together.
 
 <CardGroup cols={3}>
-  <Card title="Task Management" icon="check" href="/portals/task/dashboard">
-    Kanban board, JIRA sync, task stats
+  <Card title="✅ Task Manager" href="/docs/portals/task/dashboard">
+    Kanban boards, priorities, JIRA sync, Slack & email scanning, and task statistics. **Free**
   </Card>
-  <Card title="DRM / Incidents" icon="triangle-exclamation" href="/portals/drm/dashboard">
-    Incident tracking, RCA, maintenance windows
+  <Card title="📚 DevX Portal" href="/docs/portals/devx/service-catalog">
+    Service catalog, dependency graph, golden-path templates, DORA metrics, and scorecards. **Free**
   </Card>
-  <Card title="DevX Portal" icon="gear" href="/portals/devx/service-catalog">
-    Service catalog, golden path, DORA metrics
+  <Card title="🚨 DRM / Incidents" href="/docs/portals/drm/dashboard">
+    Incident lifecycle, RCA, action items, affected-entity tracking, and maintenance windows. **Free**
   </Card>
-  <Card title="Runbook Portal" icon="book" href="/portals/runbook/runbooks">
-    Step-based runbooks, MCP, AI-assisted runs
+  <Card title="🏗️ Platform Engineering" href="/docs/portals/platform/overview">
+    Tech radar, CI/CD pipelines, API catalog, change requests, status page, and onboarding. **Free**
   </Card>
-  <Card title="Platform Engineering" icon="bolt" href="/portals/platform/overview">
-    Tech radar, pipelines, API catalog
+  <Card title="📋 Runbook Portal" href="/docs/portals/runbook/runbooks">
+    Step-by-step runbooks with MCP execution, AI-driven suggestions, and webhook triggers. **Pro**
   </Card>
-  <Card title="Cloud & FinOps" icon="cloud" href="/portals/cloud/overview">
-    AWS / GCP / Azure inventory and costs
+  <Card title="☁️ Cloud & FinOps" href="/docs/portals/cloud/overview">
+    AWS / GCP / Azure resource inventory, cost views, budget alerts, and cost allocation. **Pro**
   </Card>
-  <Card title="Security & Compliance" icon="shield" href="/portals/security/overview">
-    CVE tracking, secrets, compliance frameworks
+  <Card title="🔒 Security & Compliance" href="/docs/portals/security/overview">
+    CVE tracking, secrets inventory with rotation alerts, SOC 2 / ISO 27001 frameworks. **Pro**
+  </Card>
+  <Card title="🤖 AI Assistant" href="/docs/getting-started/quickstart">
+    OpenAI-powered chatbot with session history — ask about services, trigger runbooks. **Pro**
+  </Card>
+  <Card title="🔑 SSO & Access" href="/docs/admin/sso">
+    SAML / OIDC provider config, role-based access control, and audit log. **Pro**
   </Card>
 </CardGroup>
+
+---
+
+## Up and running in minutes
+
+<Steps>
+  <Step title="Pull the Docker image">
+    One compose file. No build tooling, no Node or Go runtime needed on your host.
+    ```bash
+    curl -o docker-compose.yml https://raw.githubusercontent.com/sir-vikk/krado-one/main/deploy/docker/docker-compose.yml
+    docker compose up -d
+    ```
+  </Step>
+  <Step title="Run the setup wizard">
+    Create your org and owner account in under 60 seconds on first launch at **http://localhost**.
+  </Step>
+  <Step title="Configure integrations">
+    Connect Jira, Slack, GitHub, and cloud providers via **Portal Config → Integrations**.
+  </Step>
+  <Step title="Invite your team">
+    Add members, assign roles, and enable the portals your team needs.
+  </Step>
+</Steps>
+
+---
+
+## Simple, transparent pricing
+
+<CardGroup cols={3}>
+  <Card title="Free" icon="circle">
+    **$0** · Self-hosted · no license key needed
+
+    - Task Management (Kanban, JIRA sync)
+    - DRM / Incident Tracker
+    - DevX Portal & Service Catalog
+    - Platform Engineering portal
+    - DORA Metrics & Scorecards
+    - Unlimited users · SQLite or PostgreSQL
+
+    [Get started →](/docs/getting-started/quickstart)
+  </Card>
+  <Card title="Pro" icon="star">
+    **Coming Soon** · Self-hosted · license key required
+
+    - Everything in Free
+    - AI Assistant (OpenAI)
+    - Runbook Portal & MCP execution
+    - Cloud & FinOps (AWS / GCP / Azure)
+    - Security & Compliance portal
+    - SSO — SAML & OIDC
+    - Offline license — no external calls
+
+    [Contact us →](mailto:vivmishra3678@gmail.com)
+  </Card>
+  <Card title="Enterprise" icon="building">
+    **Contact us** · Managed cloud · we handle everything
+
+    - Everything in Pro
+    - Managed cloud deployment
+    - Multi-org / multi-tenant
+    - SLA & dedicated support
+    - Custom integrations
+
+    [Get in touch →](mailto:vivmishra3678@gmail.com)
+  </Card>
+</CardGroup>
+
+---
+
+<div style={{ textAlign: 'center', padding: '3rem 1rem' }}>
+  <h2 style={{ fontSize: '2rem', fontWeight: 800, marginBottom: '1rem' }}>Ready to ship faster?</h2>
+  <p style={{ color: '#94a3b8', marginBottom: '2rem' }}>
+    Pull the Docker image, run the setup wizard, and have your entire engineering workflow in one place — today.
+  </p>
+  <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+    <a href="/docs/getting-started/quickstart" style={{ background: '#6366f1', color: '#fff', padding: '0.75rem 2rem', borderRadius: '10px', fontWeight: 700, textDecoration: 'none' }}>
+      Get started free
+    </a>
+    <a href="https://github.com/sir-vikk/krado-one" style={{ background: 'transparent', color: '#94a3b8', padding: '0.75rem 2rem', borderRadius: '10px', fontWeight: 600, textDecoration: 'none', border: '1px solid #334155' }}>
+      View on GitHub →
+    </a>
+  </div>
+</div>
