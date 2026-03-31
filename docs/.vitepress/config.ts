@@ -1,14 +1,21 @@
 import { defineConfig } from 'vitepress'
 
+const base = process.env.BASE_PATH || '/'
+const siteRoot = base.replace(/docs\/?$/, '') || '/'
+
 export default defineConfig({
   title: 'Krado One',
   description: 'Engineering portals. All of them. One place.',
-  base: process.env.BASE_PATH || '/',
+  base,
   appearance: 'dark',
   cleanUrls: true,
 
   head: [
-    ['link', { rel: 'icon', href: '/logo/logo.png' }],
+    ['link', { rel: 'icon', href: `${base}logo/logo.png` }],
+    ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
+    ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
+    ['link', { href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap', rel: 'stylesheet' }],
+    ['style', {}, `body { font-family: 'Inter', var(--vp-font-family-base); }`],
   ],
 
   themeConfig: {
@@ -17,7 +24,7 @@ export default defineConfig({
 
     nav: [
       { text: 'Docs', link: '/getting-started/quickstart' },
-      { text: 'Website', link: '/' },
+      { text: 'Website', link: siteRoot },
       {
         text: 'GitHub',
         link: 'https://github.com/sir-vikk/devx-platform-enterprise'

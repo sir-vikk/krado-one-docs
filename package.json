@@ -1,10 +1,10 @@
 {
   "name": "krado-one-docs",
-  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "npm run build:docs && npm run build:merge",
-    "build:docs": "cd docs-site && npm install && npm run build",
-    "build:merge": "mkdir -p dist/docs && cp index.html dist/ && cp -r logo dist/ && cp -r docs-site/out/* dist/docs/"
+    "dev:website": "npx serve . -p 3000 -n",
+    "dev:docs": "cd docs && npx vitepress dev --port 5173",
+    "build": "cd docs && npm run build && node ../scripts/assemble.mjs",
+    "preview": "npm run build && npx serve _site -p 4000"
   }
 }

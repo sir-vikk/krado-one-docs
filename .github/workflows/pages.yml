@@ -26,23 +26,21 @@ jobs:
         with:
           node-version: 20
           cache: npm
-          cache-dependency-path: docs/package.json
+          cache-dependency-path: docs/package-lock.json
 
       - name: Install docs dependencies
-        run: cd docs && npm install
+        run: cd docs && npm ci
 
       - name: Build VitePress docs
-        run: cd docs && npm run build
-        env:
-          BASE_PATH: /docs/
+        run: |
+          REPO_NAME=$(echo "$GITHUB_REPOSITORY" | cut -d'/' -f2)
+          cd docs && BASE_PATH="/${REPO_NAME}/docs/" npm run build
 
       - name: Assemble deploy folder
         run: |
           mkdir -p _deploy/docs
-          # Website root
           cp index.html _deploy/index.html
           cp -r logo _deploy/logo
-          # VitePress output goes to /docs/
           cp -r docs/.vitepress/dist/. _deploy/docs/
 
       - name: Setup Pages

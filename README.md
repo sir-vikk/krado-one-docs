@@ -1,29 +1,38 @@
-# DevX Platform documentation site
+# Krado One — Documentation Site
 
-[Docusaurus](https://docusaurus.io/) + **Swagger UI** for **`static/openapi/openapi.json`**.
+Landing page + [VitePress](https://vitepress.dev/) documentation for the Krado One internal developer platform.
 
-##  Commands
+## Structure
 
-From **repository root**:
+| Path | Purpose |
+|------|---------|
+| `index.html` | Standalone landing page (HTML/CSS/JS) |
+| `docs/` | VitePress documentation site |
+| `logo/` | Brand assets (logo, favicon) |
+| `.github/workflows/pages.yml` | GitHub Pages deployment |
+
+## Commands
 
 ```bash
-npm run docs:install    # once (--legacy-peer-deps for swagger-ui-react + React 19)
-npm run docs:dev
-npm run docs:build      # runs openapi generator then docusaurus build
+# Install docs dependencies
+cd docs && npm install
+
+# Local dev server (docs)
+cd docs && npm run dev
+
+# Build docs
+cd docs && npm run build
 ```
 
-## OpenAPI
+## Deployment
 
-- **Output:** `static/openapi/openapi.json`
-- **Source list:** `../scripts/openapi-routes.txt`
-- **Generator:** `node ../scripts/generate-openapi.mjs`
+The site is deployed to **GitHub Pages** via the workflow in `.github/workflows/pages.yml`.
 
-Includes **multi-org** admin routes, **DRM incidents**, **maintenance**, **summaries**, **saved filters**, and **Google Calendar** config — see `backend/internal/api/handlers.go` when adding routes.
+On push to `main`:
+1. VitePress docs are built from `docs/`
+2. The landing page (`index.html`) and logos are assembled alongside the docs output
+3. Everything is deployed to GitHub Pages
 
-## GitHub Pages
-
-See **`.github/workflows/deploy-docs.yml`**. Enable **Pages** from the **`gh-pages`** branch. The site URL is `https://<owner>.github.io/<repo>/` (or `/` for a `<user>.github.io` repository). `docusaurus.config.ts` reads **`GITHUB_REPOSITORY`** in Actions.
-
-## Screenshots
-
-Place files under `docs/assets/` and reference them in Markdown.
+The live site structure:
+- `/` → Landing page (`index.html`)
+- `/docs/` → VitePress documentation
