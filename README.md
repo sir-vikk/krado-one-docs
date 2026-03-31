@@ -36,3 +36,4 @@ On push to `main`:
 The live site structure:
 - `/` → Landing page (`index.html`)
 - `/docs/` → VitePress documentation
+
