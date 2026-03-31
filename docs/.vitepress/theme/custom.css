@@ -1,0 +1,70 @@
+/* Brand colors */
+:root {
+  --vp-c-brand-1: #6366f1;
+  --vp-c-brand-2: #818cf8;
+  --vp-c-brand-3: #a5b4fc;
+  --vp-c-brand-soft: rgba(99, 102, 241, 0.14);
+}
+
+/* Dark theme */
+.dark {
+  --vp-c-bg: #04060f;
+  --vp-c-bg-soft: #0c1221;
+  --vp-c-bg-mute: #111827;
+  --vp-nav-bg-color: rgba(4, 6, 15, 0.88);
+  --vp-c-divider: rgba(255, 255, 255, 0.08);
+  --vp-c-text-1: #e2e8f0;
+  --vp-c-text-2: #94a3b8;
+}
+
+/* Nav */
+.VPNav {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+/* Sidebar */
+.dark .VPSidebar {
+  background: var(--vp-c-bg-soft);
+}
+
+/* Home page hero — not used but keep for completeness */
+.VPHero .name {
+  background: linear-gradient(135deg, #6366f1 0%, #818cf8 50%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Code blocks */
+.dark div[class*='language-'] {
+  background: #0c1221;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* Tables */
+.dark .vp-doc table {
+  border-collapse: collapse;
+}
+.dark .vp-doc th {
+  background: rgba(99, 102, 241, 0.12);
+  color: #c7d2fe;
+}
+.dark .vp-doc tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Tips / callouts */
+.dark .vp-doc .tip {
+  border-color: var(--vp-c-brand-1);
+  background: rgba(99, 102, 241, 0.08);
+}
+
+/* Badges in text */
+.vp-badge {
+  border-radius: 4px;
+  font-size: 0.72em;
+  font-weight: 600;
+  padding: 2px 6px;
+}

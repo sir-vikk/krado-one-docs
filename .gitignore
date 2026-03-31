@@ -22,3 +22,11 @@ devx-website/.next
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# VitePress
+docs/.vitepress/dist/
+docs/.vitepress/cache/
+docs/node_modules/
+
+# GitHub Pages build output
+_deploy/

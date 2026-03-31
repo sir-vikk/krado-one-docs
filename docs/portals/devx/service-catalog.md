@@ -1,0 +1,44 @@
+---
+title: "Service Catalog"
+description: "Central registry of every internal service — tracking ownership, dependencies, SLOs, environments, and health scores."
+---
+
+# Service Catalog
+
+**Route:** `/catalog` · **Edition:** Community+
+
+The Service Catalog is the central registry of every internal service your organisation operates. It tracks ownership, dependencies, SLOs, environments, and health scores in one place.
+
+
+## Service card
+
+Each card shows:
+- Service name and description
+- Owning team
+- Tech stack tags
+- Current scorecard health score (A–F)
+- Dependency count
+
+## Adding a service
+
+Click **+ Add Service** and fill in:
+
+| Field | Description |
+|-------|-------------|
+| Name | Unique service identifier |
+| Description | What the service does |
+| Team | Owning team |
+| Repository URL | Source code link |
+| Tech stack | Language / framework tags |
+| Tier | Criticality (Tier 1 / 2 / 3) |
+
+## Service detail
+
+Opening a service shows:
+- **Overview** — description, links, metadata
+- **Dependencies** — upstream and downstream services (visualised in the dependency graph)
+- **SLOs** — availability and latency targets with current status
+- **Environments** — prod, staging, dev with deployment info
+- **Integrations** — ArgoCD app, PagerDuty service, Prometheus metrics mapping
+- **Scorecard** — automatic health score based on configured rules
+- **Runbook** — per-service operational runbook (markdown)
