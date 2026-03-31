@@ -1,7 +1,6 @@
 import { defineConfig } from 'vitepress'
 
 const base = process.env.BASE_PATH || '/'
-const siteRoot = base.replace(/docs\/?$/, '') || '/'
 
 export default defineConfig({
   title: 'Krado One',
@@ -24,7 +23,7 @@ export default defineConfig({
 
     nav: [
       { text: 'Docs', link: '/getting-started/quickstart' },
-      { text: 'Website', link: siteRoot },
+      { text: 'Website', link: '/../' },
       {
         text: 'GitHub',
         link: 'https://github.com/sir-vikk/devx-platform-enterprise'
