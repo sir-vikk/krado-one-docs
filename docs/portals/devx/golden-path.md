@@ -1,35 +1,53 @@
 ---
 title: "Golden Path (Self-Service Provisioning)"
-description: "Platform-defined service templates that let developers provision new services without knowing the underlying infrastructure."
+description: "Create reusable service templates and let developers provision new services through a guided self-service workflow in Krado One."
 ---
 
 # Golden Path (Self-Service Provisioning)
 
-**Route:** `/golden-path` · **Edition:** Community+
+Golden Path enables platform teams to define reusable service templates and allows developers to provision new services from those templates in just a few clicks -- without needing to understand the underlying infrastructure.
 
-Golden Path lets platform teams define reusable service templates, and lets developers provision new services from those templates in a few clicks — without needing to know the underlying infrastructure details.
+## How to Access
 
+Navigate to **DevX Portal > Golden Path** from the left sidebar.
 
-## Templates
+## Creating a Template (Admins)
 
-Templates define what gets created when a developer requests a new service. Each template includes:
+Platform administrators define the templates that developers will use to provision services.
 
-| Field | Description |
-|-------|-------------|
-| Name | Template display name (e.g. "Go Microservice") |
-| Description | What kind of service it creates |
-| Variables | Input fields the developer fills in (name, team, region, etc.) |
-| n8n workflow ID | The automation workflow that handles the actual provisioning |
+1. Click **+ New Template** at the top of the templates list.
+2. Fill in the template details:
 
-Templates are created and managed by platform admins. Developers only see the **provision** form.
+    | Field | Description |
+    |-------|-------------|
+    | Name | A display name for the template (e.g., "Go Microservice") |
+    | Description | What kind of service this template creates |
+    | Variables | Input fields the developer will fill in during provisioning (e.g., service name, team, region) |
+    | Workflow | The automation workflow that handles the actual provisioning |
 
-## Provisioning a service
+3. Click **Save** to publish the template.
 
-1. Browse the template list and click a template
-2. Fill in the requested variables (service name, team, etc.)
-3. Click **Provision** — this triggers the linked n8n workflow
-4. You're taken to the **Provisioning Status** page which polls for completion
+Templates are only editable by platform administrators. Developers see only the provisioning form.
 
-## Provisioning history
+![Golden Path template list showing available service templates](/screenshots/devx-golden-path-templates.png)
 
-The **History** tab shows all past provisioning requests with status, template used, and timestamp — useful for audits and debugging failed provisioning runs.
+## Provisioning a Service (Developers)
+
+1. Browse the available templates on the Golden Path page.
+2. Click on the template that matches the type of service you want to create.
+3. Fill in the requested variables (e.g., service name, owning team, deployment region).
+4. Click **Provision** to start the automated provisioning workflow.
+5. You will be redirected to the **Provisioning Status** page, which updates in real time as the workflow progresses.
+
+![Provisioning form with variables and the Provision button](/screenshots/devx-golden-path-provision.png)
+
+## Viewing Provisioning History
+
+The **History** tab on the Golden Path page shows all past provisioning requests. Each entry includes:
+
+- The template that was used
+- The developer who initiated the request
+- Current status (Running, Completed, or Failed)
+- Timestamp of the request
+
+Use this view for auditing or to debug failed provisioning runs.

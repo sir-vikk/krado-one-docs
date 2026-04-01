@@ -1,92 +1,100 @@
 ---
 title: "Quick Start"
-description: "Get Krado One running in under 5 minutes using the official Docker images."
+description: "Get Krado One up and running in under five minutes with Docker."
 ---
 
-# Quick start
+# Quick Start
 
-Get Krado One running in under 5 minutes using the official Docker images.
+Welcome to Krado One. This guide walks you through installing the platform on your local machine, completing the first-time setup wizard, and landing on Portal Home -- all in under five minutes.
 
 ## Prerequisites
+
+Before you begin, make sure the following tools are installed on your machine:
 
 | Tool | Minimum version |
 |------|----------------|
 | Docker | 24+ |
 | Docker Compose | v2 |
 
-## 1 — Create your compose file
-
-Create a directory and download the compose file:
+You can verify both with:
 
 ```bash
-mkdir devx && cd devx
-curl -O https://raw.githubusercontent.com/sir-vikk/devx-platform-enterprise/main/deploy/docker/docker-compose.yml
-curl -O https://raw.githubusercontent.com/sir-vikk/devx-platform-enterprise/main/deploy/docker/nginx.conf
+docker --version
+docker compose version
 ```
 
-Or create `docker-compose.yml` manually — see [Docker deployment](./docker) for the full file.
+## Step 1 -- Download and configure
 
-## 2 — Configure
+Create a working directory and pull down the official compose file, nginx configuration, and sample environment file:
 
 ```bash
-# Copy the sample env file (edit before starting for production)
+mkdir krado-one && cd krado-one
+
+curl -O https://raw.githubusercontent.com/sir-vikk/devx-platform-enterprise/main/deploy/docker/docker-compose.yml
+curl -O https://raw.githubusercontent.com/sir-vikk/devx-platform-enterprise/main/deploy/docker/nginx.conf
 curl -O https://raw.githubusercontent.com/sir-vikk/devx-platform-enterprise/main/.env.example
+
 cp .env.example .env
 ```
 
-For local testing the defaults work out of the box — SQLite is used automatically, no external services required.
+For a local trial the defaults work out of the box -- SQLite is used automatically and no external services are required.
 
-To enable integrations (Jira, Slack, OpenAI, etc.) edit `.env` before starting. See [Configuration reference](../reference/configuration).
+If you want to enable integrations such as Jira, Slack, or OpenAI, edit the `.env` file before starting. See the [Configuration reference](../reference/configuration) for all available variables.
 
-## 3 — Start
+## Step 2 -- Start the platform
 
 ```bash
 docker compose up -d
 ```
 
-This pulls and starts:
-- **Backend API** on port `8080`
-- **Frontend** on port `80` / `5173`
+Docker will pull two images and start the stack:
 
-## 4 — First-time setup
+| Container | Purpose | Default port |
+|-----------|---------|-------------|
+| `devx-backend` | Go API server | `8080` |
+| `devx-frontend` | React SPA served by nginx | `80` / `5173` |
 
-Open `http://localhost` (or `http://localhost:5173` if using the dev port). You will be presented with a two-step setup wizard:
+Once the containers are healthy, open your browser and navigate to `http://localhost` (or `http://localhost:5173` if you are using the development port).
 
-**Step 1 — Organization**
+## Step 3 -- First-time setup wizard
 
-| Field | Description |
-|-------|-------------|
-| Organization name | Display name (e.g. "Acme Engineering") |
-| Slug | URL-safe identifier (e.g. `acme`) |
-| Domain | Optional email domain for org matching |
+On a fresh database Krado One presents a two-step setup wizard. Complete it to create your organization and owner account.
 
-**Step 2 — Owner account**
+**Organization details**
 
-| Field | Description |
-|-------|-------------|
-| Username | Login username |
-| Email | Owner email address |
-| Password | Must be at least 6 characters |
+Enter your organization name, a URL-safe slug, and an optional email domain for automatic org matching.
 
-After submitting, you are automatically logged in as the org owner with full admin access.
+![Organization setup step in the Krado One setup wizard](/screenshots/setup-wizard-organization.png)
 
-:::tip
-The setup wizard only appears on a fresh database. If you need to reset, remove the `devx_data` volume and restart:
+**Owner account**
+
+Create the first admin account by providing a username, email address, and a password of at least six characters.
+
+![Owner account creation step in the Krado One setup wizard](/screenshots/setup-wizard-owner.png)
+
+After you submit, Krado One logs you in automatically with full admin access.
+
+::: tip
+The setup wizard only appears when the database is empty. To start over, remove the data volume and restart:
 ```bash
 docker compose down -v && docker compose up -d
 ```
 :::
 
-## 5 — Explore
+## Step 4 -- Explore Portal Home
 
-From **Portal Home** you can enter any of the enabled portals. Use **Portal Config → Portal Settings** to toggle individual sections.
+You are now on Portal Home, the central hub of Krado One. From here you can navigate into any of the enabled portals -- incidents, service catalog, runbooks, cloud costs, and more.
 
+![Portal Home after first login](/screenshots/portal-home.png)
+
+Use **Portal Config** in the sidebar to toggle individual portal sections on or off for your organization.
 
 ---
 
 ## What's next
 
-- [Docker deployment](./docker) — production configuration, PostgreSQL, TLS
-- [Configuration reference](../reference/configuration) — all environment variables
-- [Editions & quotas](../concepts/editions) — Free vs Pro vs Enterprise
-- [Users, roles & permissions](../admin/users-and-roles) — add your team
+- [Docker deployment](./docker) -- production configuration, PostgreSQL, and TLS
+- [Installation (detailed)](./installation) -- database options, backup, and Kubernetes/Helm
+- [Configuration reference](../reference/configuration) -- all environment variables
+- [Editions and quotas](../concepts/editions) -- Free vs Pro vs Enterprise
+- [Users, roles, and permissions](../admin/users-and-roles) -- invite your team

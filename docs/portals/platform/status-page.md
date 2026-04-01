@@ -1,29 +1,48 @@
 ---
 title: "Status Page"
-description: "Track operational status of user-facing services with a public-facing view customers can check during incidents."
+description: "Manage the operational status of your user-facing services and communicate service health during incidents in Krado One."
 ---
 
 # Status Page
 
-**Route:** `/platform/status-page` · **Edition:** Pro+ · **Beta**
+The Status Page tracks the operational status of your user-facing services and provides a view that customers and internal teams can reference during incidents. It serves as the source of truth for current service health.
 
-The Status Page tracks the operational status of your user-facing services and provides a public-facing view that customers or internal teams can check during incidents.
+## How to Access
 
+Navigate to **Platform Portal > Status Page** from the left sidebar.
 
-## Service statuses
+## Understanding Service Statuses
+
+Each service on the status page can be in one of the following states:
 
 | Status | Meaning |
 |--------|---------|
-| **Operational** | All systems normal |
-| **Degraded Performance** | Service working but slower than expected |
-| **Partial Outage** | Some users affected |
-| **Major Outage** | Service unavailable |
-| **Under Maintenance** | Planned maintenance in progress |
+| **Operational** | All systems are functioning normally |
+| **Degraded Performance** | The service is operational but slower than expected |
+| **Partial Outage** | Some users are experiencing issues |
+| **Major Outage** | The service is unavailable |
+| **Under Maintenance** | Planned maintenance is in progress |
 
-## Manual overrides
+## Updating Service Status During an Incident
 
-During an incident you can manually override a service's status. The override is timestamped and will show the reason. Clear the override once the incident is resolved to return to automatic status.
+When an incident occurs and you need to communicate the impact:
 
-## Configuration
+1. Open the **Status Page** from the left sidebar.
+2. Locate the affected service.
+3. Click the service to open its status editor.
+4. Select the appropriate status from the dropdown.
+5. Add a reason or description for the status change.
+6. Click **Save** to update the status.
 
-Configure which services appear on the status page and their display names under the Status Page settings panel.
+The status change is timestamped and visible immediately. Once the incident is resolved, clear the override to return the service to its normal status.
+
+## Configuring Which Services Appear
+
+To manage which services are displayed on the status page:
+
+1. Open the **Status Page settings** panel.
+2. Select the services that should be visible.
+3. Customize the display names as needed.
+4. Save your configuration.
+
+![Status Page showing service health indicators and current statuses](/screenshots/platform-status-page.png)

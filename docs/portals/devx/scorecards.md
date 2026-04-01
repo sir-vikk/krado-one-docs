@@ -1,34 +1,48 @@
 ---
 title: "Scorecards"
-description: "Automatically evaluate every service against engineering standards and produce a letter grade from A to F."
+description: "Automatically evaluate every service against engineering standards and produce a health grade from A to F in Krado One."
 ---
 
 # Scorecards
 
-**Route:** `/scorecards` · **Edition:** Community+
+Scorecards automatically evaluate every service in your catalog against a set of engineering standards and produce a letter grade from A to F. They help your organization maintain consistent service quality by surfacing gaps in documentation, observability, ownership, and operational readiness.
 
-Scorecards automatically evaluate every service in the catalog against a set of engineering standards — documentation, SLOs, on-call coverage, security, and more — and produce a letter grade (A–F).
+## How to Access
 
+Navigate to **DevX Portal > Scorecards** from the left sidebar.
 
-## How scoring works
+## How Scoring Works
 
-Each scorecard rule checks a specific attribute of a service:
+Each scorecard consists of a set of rules. Every rule checks a specific attribute of a service, such as:
+
 - Does the service have a runbook?
 - Are SLOs defined?
 - Is the service assigned to a team?
 - Does the service have a repository URL?
-- Are environments configured?
+- Are deployment environments configured?
 
-Each rule carries a weight. The final score is a weighted average, mapped to a letter grade.
+Each rule carries a configurable weight. The final score is a weighted average of all passing rules, mapped to a letter grade (A through F).
 
-## Leaderboard
+## Viewing the Leaderboard
 
-The scorecards page shows a ranked list of all services, sorted by score. This encourages teams to keep their service metadata complete and up-to-date.
+The scorecards page displays a ranked list of all services, sorted by their score. This leaderboard encourages teams to keep their service metadata complete and up to date. Services with lower grades can be prioritized for improvement.
 
-## Service scorecard detail
+## Reviewing a Service Scorecard
 
-Click any service to see its individual rule breakdown — which rules pass, which fail, and what the specific gap is. Use this to prioritise improvements.
+1. Open the **Scorecards** page.
+2. Click any service in the leaderboard to view its individual rule breakdown.
+3. Review which rules pass and which fail, along with details on what the specific gap is.
+4. Use this information to prioritize improvements for that service.
 
-## Rules management
+## Managing Scoring Rules
 
-Admins can view and customise the built-in rules under **Portal Config → Scorecard Rules**. New rules can be added with custom weights.
+Administrators can view and customize the built-in scoring rules:
+
+1. Navigate to **Portal Config > Scorecard Rules**.
+2. Review the existing rules and their weights.
+3. Adjust weights to reflect your organization's priorities.
+4. Add new custom rules as needed.
+
+Changes to rules will recalculate scores for all services on the next evaluation cycle.
+
+![Scorecards leaderboard showing services ranked by health grade](/screenshots/devx-scorecards.png)

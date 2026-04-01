@@ -3,8 +3,8 @@ layout: home
 
 hero:
   name: "Krado One"
-  text: "Engineering portals.\nAll of them. One place."
-  tagline: Self-hosted internal developer platform — DRM, DevX, Platform, Runbook, Cloud, Security, and Task portals in a single deployable stack.
+  text: "A DevEx Platform.\nAll portals. One place."
+  tagline: Incidents, tasks, service catalog, runbooks, cloud costs, security, and more — deployed in minutes, owned forever.
   image:
     src: /logo/logo.png
     alt: Krado One
@@ -19,26 +19,26 @@ hero:
 features:
   - icon: 🚨
     title: DRM — Incident Tracker
-    details: Manage incidents end-to-end. Track severity, maintenance windows, RCA, and resolution metrics across your entire estate.
+    details: Manage incidents end-to-end with severity tracking, maintenance windows, root cause analysis, and resolution metrics.
     link: /portals/drm/dashboard
   - icon: 🛠️
     title: Platform Portal
-    details: Service catalog, tech radar, API catalog, change requests, pipeline visibility, and promotion workflows in one place.
+    details: Tech radar, API catalog, change requests, CI/CD pipeline tracking, promotion workflows, and developer onboarding.
     link: /portals/platform/overview
   - icon: 🧑‍💻
     title: DevX Portal
-    details: Golden paths, scorecards, dependency graphs, and operational dashboards to boost developer experience.
+    details: Service catalog, golden path templates, scorecards, dependency graphs, and DORA metrics for developer experience.
     link: /portals/devx/service-catalog
   - icon: 📋
     title: Runbook Portal
-    details: Create and execute operational runbooks with AI-powered step selection, MCP server integration, and full execution history.
+    details: Create and execute operational runbooks with AI-powered assistance, MCP server integration, and full execution history.
     link: /portals/runbook/runbooks
   - icon: ☁️
     title: Cloud Portal
-    details: Cloud cost visibility, FinOps dashboards, resource inventory, and spend attribution across providers.
+    details: Multi-cloud resource inventory, cost visibility, FinOps dashboards, and spend attribution across AWS, GCP, and Azure.
     link: /portals/cloud/overview
   - icon: 🔒
     title: Security Portal
-    details: Compliance tracking, secrets management, vulnerability scanning, and security posture dashboards.
+    details: Vulnerability tracking, secrets management, compliance frameworks, and security posture dashboards.
     link: /portals/security/overview
 ---

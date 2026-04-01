@@ -1,95 +1,114 @@
 ---
 title: "Editions"
-description: "Krado One ships as a single codebase with Free, Pro, and Enterprise tiers. Learn how gating works and what each tier includes."
+description: "Compare Krado One's Free, Pro, and Enterprise tiers and learn how to upgrade."
 ---
 
 # Editions
 
-Krado One ships as a single codebase with three tiers. **Free** and **Pro** are self-hosted by you. **Enterprise** is a managed cloud instance hosted and operated by us.
+Krado One is available in three editions: **Free**, **Pro**, and **Enterprise**. All three share the same codebase -- you unlock additional capabilities by upgrading your tier.
+
+- **Free** and **Pro** are self-hosted by you.
+- **Enterprise** is a fully managed cloud instance hosted and operated by the Krado team.
 
 ---
 
-## Tier overview
+## Free
 
-| | **Free** | **Pro** | **Enterprise** |
-|---|----------|---------|----------------|
-| Infrastructure | You self-host | You self-host | We manage it |
-| License | None | `LICENSE_KEY` env var | Provisioned by us |
-| Activation | No key needed | Set `LICENSE_KEY` and restart | We handle it |
+The Free edition gives you a complete developer experience platform at no cost. No license key is required -- just install and start using it.
 
----
+Included features:
 
-## How gating works
-
-### Backend middleware
-
-Routes that require Pro or Enterprise use `RequireMin(Pro)` or `RequireMin(Enterprise)` middleware. When the current tier is below the required level the server returns:
-
-```json
-{
-  "error": "This feature requires Pro or Enterprise.",
-  "edition": "community",
-  "required": "pro",
-  "upgrade_url": "https://yoursite.com/pricing"
-}
-```
-
-Set `EDITION_UPGRADE_URL` to customise the URL shown in these responses.
-
-### Feature flags
-
-`GET /api/portal/feature-flags` returns the effective flag set after `ApplyFlagCaps` clamps values to what the current tier allows. The frontend uses these flags to show/hide portal cards and navigation items.
-
-### License key detection
-
-On startup, `LoadLicense()` checks (in order):
-1. `LICENSE_KEY` env var
-2. `LICENSE_KEY_FILE` env var
-3. `data/license.key` file
-
-If a valid license key is found, the effective tier becomes **Pro** (or **Enterprise** for enterprise keys). The key is validated offline using HMAC-SHA256 — no external service call is required.
+- Task Management with JIRA and Slack/email scanning
+- DRM / Incident Tracker with maintenance windows
+- DevX (IDP) Portal -- service catalog, golden paths, DORA metrics, and scorecards
+- Platform Engineering -- tech radar, CI/CD pipelines, API catalog, change requests, promotions, status page, and onboarding
+- User management with RBAC, audit logs, notifications, API keys, and plugins
 
 ---
 
-## Free tier features
+## Pro
 
-All the features listed here are available with `APP_EDITION=community`, no license needed:
-
-- Task Management, JIRA, Slack/email scan
-- DRM / Incident Tracker, maintenance windows
-- DevX (IDP) Portal — service catalog, golden path, DORA metrics, scorecards
-- Platform Engineering — tech radar, CI/CD, API catalog, change requests, promotions, status page, onboarding
-- User management, RBAC, audit log, notifications, API keys, plugins
-
----
-
-## Pro tier features
-
-Requires a valid license key. Set `LICENSE_KEY` in your environment (or upload via **Portal Config → License**). Keys are validated offline — no external service needed.
+The Pro edition adds advanced portals and AI capabilities on top of everything in Free. Pro is ideal for teams that need deeper automation, cloud visibility, and security tooling.
 
 Additional features over Free:
 
-- AI Assistant (OpenAI chatbot)
-- Runbook Portal — step-based runbooks, MCP execution, webhook triggers
-- Cloud & FinOps — AWS/GCP/Azure inventory, cost views, budget alerts
-- Security & Compliance — CVE tracking, secrets inventory, compliance frameworks
-- n8n Workflows, DB Console, Database Backup
+- AI Assistant powered by OpenAI
+- Runbook Portal -- step-based runbooks, MCP execution, and webhook triggers
+- Cloud and FinOps -- AWS, GCP, and Azure inventory, cost views, and budget alerts
+- Security and Compliance -- CVE tracking, secrets inventory, and compliance frameworks
+- n8n Workflows, DB Console, and Database Backup
+- SSO support (Google, GitHub, SAML, OIDC)
+
+### How to upgrade to Pro
+
+1. Navigate to **Portal Config → License**
+2. Enter your license key
+3. Save -- the Pro features are enabled immediately, no restart required
+
+License keys are validated offline. No data is sent to an external service.
+
+If you don't have a license key yet, visit the Krado website to purchase one.
 
 ---
 
-## Enterprise tier
+## Enterprise
 
-Enterprise instances are provisioned and managed by us. You get the same feature set as Pro plus:
+Enterprise gives you everything in Pro, plus managed infrastructure and multi-tenant capabilities. The Krado team provisions, hosts, and operates your instance so you can focus on your platform.
 
-- Multi-org / multi-tenant support
-- Managed infrastructure — zero ops on your side
-- SLA & dedicated support
-- Custom integrations
+Additional features over Pro:
 
-Contact us to get an Enterprise account.
+- Multi-organization / multi-tenant support
+- Managed infrastructure -- zero ops on your side
+- SLA and dedicated support
+- Custom integrations and onboarding assistance
+
+To get started with Enterprise, contact us at the Krado website.
 
 ---
 
-## Default edition
+## Feature comparison
 
-When `APP_EDITION` is not set, the server defaults to `enterprise` in development builds (backward compatible for existing single-tenant installs). Set `APP_EDITION=community` explicitly in production self-hosted deployments to run Free tier.
+| Feature | Free | Pro | Enterprise |
+|---------|:----:|:---:|:----------:|
+| **Infrastructure** | Self-hosted | Self-hosted | Managed by Krado |
+| **License key required** | No | Yes | Provisioned for you |
+| | | | |
+| **Task Management** | Yes | Yes | Yes |
+| **JIRA Integration** | Yes | Yes | Yes |
+| **Slack / Email Scanning** | Yes | Yes | Yes |
+| **DRM / Incident Tracker** | Yes | Yes | Yes |
+| **Maintenance Windows** | Yes | Yes | Yes |
+| **DevX (IDP) Portal** | Yes | Yes | Yes |
+| **Service Catalog** | Yes | Yes | Yes |
+| **Golden Paths** | Yes | Yes | Yes |
+| **DORA Metrics** | Yes | Yes | Yes |
+| **Scorecards** | Yes | Yes | Yes |
+| **Platform Engineering** | Yes | Yes | Yes |
+| **Tech Radar** | Yes | Yes | Yes |
+| **CI/CD Pipelines** | Yes | Yes | Yes |
+| **API Catalog** | Yes | Yes | Yes |
+| **Change Requests** | Yes | Yes | Yes |
+| **Promotions** | Yes | Yes | Yes |
+| **Status Page** | Yes | Yes | Yes |
+| **Onboarding** | Yes | Yes | Yes |
+| **User Management / RBAC** | Yes | Yes | Yes |
+| **Audit Log** | Yes | Yes | Yes |
+| **Notifications** | Yes | Yes | Yes |
+| **API Keys** | Yes | Yes | Yes |
+| **Plugins** | Yes | Yes | Yes |
+| | | | |
+| **AI Assistant (OpenAI)** | -- | Yes | Yes |
+| **Runbook Portal** | -- | Yes | Yes |
+| **Cloud and FinOps** | -- | Yes | Yes |
+| **Security and Compliance** | -- | Yes | Yes |
+| **n8n Workflows** | -- | Yes | Yes |
+| **DB Console** | -- | Yes | Yes |
+| **Database Backup** | -- | Yes | Yes |
+| **SSO (Google, GitHub, SAML, OIDC)** | -- | Yes | Yes |
+| | | | |
+| **Multi-organization** | -- | -- | Yes |
+| **Managed Infrastructure** | -- | -- | Yes |
+| **SLA and Dedicated Support** | -- | -- | Yes |
+| **Custom Integrations** | -- | -- | Yes |
+
+![Editions comparison in Portal Config](/screenshots/editions-comparison.png)

@@ -1,27 +1,44 @@
 ---
 title: "API Catalog"
-description: "Internal registry of all HTTP APIs — endpoints, versions, owners, documentation links, and deprecation tracking."
+description: "Register and manage all internal HTTP APIs with version tracking, ownership, and deprecation management in Krado One."
 ---
 
 # API Catalog
 
-**Route:** `/platform/api-catalog` · **Edition:** Pro+ · **Beta**
+The API Catalog is an internal registry of all HTTP APIs exposed by your services. It helps teams discover available APIs, understand ownership, and track version lifecycle including deprecation timelines.
 
-The API Catalog is an internal registry of all HTTP APIs exposed by your services — endpoints, versions, owners, and documentation links.
+## How to Access
 
+Navigate to **Platform Portal > API Catalog** from the left sidebar.
 
-## Entry fields
+## Registering an API
 
-| Field | Description |
-|-------|-------------|
-| Name | API name (e.g. "Payments API") |
-| Version | Semantic version (e.g. `v2.1.0`) |
-| Base URL | Base endpoint (e.g. `https://payments.internal/api/v2`) |
-| Service | Owning service from the catalog |
-| Spec URL | Link to OpenAPI/Swagger spec |
-| Status | Active / Deprecated / Sunset |
-| Description | What this API does |
+1. Click **+ Add API** at the top of the catalog.
+2. Fill in the API details:
 
-## Deprecation tracking
+    | Field | Description |
+    |-------|-------------|
+    | Name | The API name (e.g., "Payments API") |
+    | Version | Semantic version (e.g., v2.1.0) |
+    | Service | The owning service from the Service Catalog |
+    | Spec URL | Link to the OpenAPI or Swagger specification |
+    | Status | Active, Deprecated, or Sunset |
+    | Description | A brief summary of what the API does |
 
-Mark APIs as **Deprecated** with a sunset date. This surfaces in the catalog so consuming teams know to migrate before the deadline.
+3. Click **Save** to register the API.
+
+## Tracking Versions
+
+As your APIs evolve, register new versions to maintain a complete version history. Previous versions remain visible in the catalog so consumers can see the full evolution of the API.
+
+## Managing Deprecation
+
+When an API version is being retired:
+
+1. Open the API entry in the catalog.
+2. Change the status to **Deprecated**.
+3. Set a **sunset date** to indicate when the API will no longer be available.
+
+Deprecated APIs are clearly marked in the catalog, giving consuming teams advance notice to migrate before the deadline.
+
+![API Catalog showing registered APIs with version and status information](/screenshots/platform-api-catalog.png)

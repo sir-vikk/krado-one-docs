@@ -1,32 +1,51 @@
 ---
 title: "Developer Onboarding"
-description: "Structured checklists for new developers with progress tracking and admin visibility."
+description: "Create structured onboarding checklists, assign them to new developers, and track completion progress in Krado One."
 ---
 
 # Developer Onboarding
 
-**Route:** `/platform/onboarding` · **Edition:** Pro+ · **Beta**
+The Onboarding module helps platform teams create structured checklists for new developers and track their completion progress. It ensures every new team member follows a consistent onboarding path and nothing is missed.
 
-The Onboarding module lets platform teams define structured checklists for new developers and track their completion progress.
+## How to Access
 
+Navigate to **Platform Portal > Onboarding** from the left sidebar.
 
-## Templates
+## Creating an Onboarding Template (Admins)
 
-Platform admins create onboarding templates — named collections of checklist items. Examples:
-- "Backend Engineer Onboarding"
-- "On-Call Runbook Setup"
-- "New Service Launch Checklist"
+1. Click **+ New Template** on the onboarding page.
+2. Give the template a descriptive name (e.g., "Backend Engineer Onboarding" or "New Service Launch Checklist").
+3. Add checklist items in order. Each item includes:
+    - A **title** describing the task
+    - An optional **description** with additional context or links
+4. Reorder items by dragging them into the desired sequence.
+5. Click **Save** to publish the template.
 
-Each template contains ordered checklist items with a title and optional description.
+You can create multiple templates for different roles or scenarios.
 
-## Assigning a checklist
+## Assigning a Checklist to a User
 
-Admins assign a template to a user. This creates a personal checklist instance for that user, visible in their **My Checklists** view.
+1. Open the template you want to assign.
+2. Click **Assign to User**.
+3. Select the user from the dropdown.
+4. Click **Assign** to create a personal checklist instance for that user.
 
-## Completing items
+The assigned checklist will appear in the user's **My Checklists** view.
 
-Users toggle individual items as they complete them. Progress is shown as a percentage bar. Admins can view all active checklists and see who is blocked or falling behind.
+## Completing Checklist Items (Developers)
 
-## My Checklists
+Developers can view their assigned checklists under **My Checklists**:
 
-Developers see only their own assigned checklists. Each checklist shows overall progress and the list of items with a checkbox to mark each done.
+1. Open an assigned checklist.
+2. Toggle each item as you complete it.
+3. A progress bar shows your overall completion percentage.
+
+## Tracking Progress (Admins)
+
+Administrators can view all active checklists across the organization. The admin view shows:
+
+- Each user's assigned checklists
+- Overall completion percentage per checklist
+- Users who may be blocked or falling behind schedule
+
+![Developer Onboarding showing templates, assigned checklists, and progress tracking](/screenshots/platform-onboarding.png)

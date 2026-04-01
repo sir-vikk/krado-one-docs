@@ -1,36 +1,53 @@
 ---
 title: "MCP Servers"
-description: "Register HTTP tool servers (MCP) whose tools become available as runbook steps."
+description: "Register and manage MCP (Model Context Protocol) servers to make their tools available as runbook steps in Krado One."
 ---
 
 # MCP Servers
 
-**Route:** `/rb/mcp-servers` · **Edition:** Pro+
+MCP (Model Context Protocol) servers are HTTP tool servers that expose callable tools. By registering MCP servers in Krado One, their tools become available as step types inside any runbook, extending your automation capabilities.
 
-MCP (Model Context Protocol) servers are HTTP tool servers that expose callable tools. Once registered, their tools are available as steps inside any runbook.
+## How to Access
 
+Navigate to **Runbook Portal > MCP Servers** from the left sidebar.
 
-## Adding an MCP server
+## Registering an MCP Server
 
-Click **+ Add Server** and provide:
+1. Click **+ Add Server** at the top of the MCP servers list.
+2. Fill in the server details:
 
-| Field | Description |
-|-------|-------------|
-| Name | Display name (e.g. "Internal Toolbox") |
-| Description | What tools this server provides |
-| URL | Base URL of the MCP server (e.g. `http://mcp.internal:8000`) |
-| Auth type | None / API Key / Bearer token |
-| Auth config | Key or token value for the selected auth type |
+    | Field | Description |
+    |-------|-------------|
+    | Name | A display name for the server (e.g., "Internal Toolbox") |
+    | Description | A summary of what tools this server provides |
+    | URL | The base URL of the MCP server (e.g., `http://mcp.internal:8000`) |
+    | Auth Type | None, API Key, or Bearer Token |
+    | Auth Config | The key or token value for the selected auth type |
 
-## Testing the connection
+3. Click **Save** to register the server.
 
-Click **Test** on any server to send a health/list probe. The result shows whether the server is reachable and, if so, which tools it exposes.
+## Testing the Connection
 
-## Using MCP tools in runbooks
+After registering a server, verify that it is reachable:
 
-In the runbook builder, add an **MCP** step and select:
-1. The registered MCP server
-2. The tool name (from the server's tool list)
-3. The arguments (JSON object)
+1. Find the server in the list.
+2. Click the **Test** button.
+3. Krado One sends a health and tool discovery probe to the server.
+4. The result shows whether the server is reachable and, if so, which tools it exposes.
 
-The step calls the tool and stores its response as the step output, available to subsequent steps via condition logic.
+If the test fails, verify the URL and authentication credentials.
+
+## Using MCP Tools in Runbooks
+
+Once a server is registered and its connection verified, its tools are available in the runbook builder:
+
+1. Open the runbook builder (create a new runbook or edit an existing one).
+2. Add a new step and select **MCP** as the step type.
+3. Choose the registered MCP server from the dropdown.
+4. Select the tool you want to call from the server's tool list.
+5. Provide the required arguments as a JSON object.
+6. Save the step.
+
+When the runbook executes, the MCP step calls the selected tool and stores the response as the step output, which can be referenced by subsequent steps using condition logic.
+
+![MCP Servers list showing registered servers with connection status](/screenshots/runbook-mcp-servers.png)

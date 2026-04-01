@@ -1,64 +1,71 @@
 ---
 title: "Creating a Runbook"
-description: "Build named, ordered runbooks with HTTP, Jira, Slack, Shell, MCP, and Condition step types."
+description: "Build operational runbooks with ordered steps, multiple step types, and configurable triggers in Krado One."
 ---
 
 # Creating a Runbook
 
-**Route:** `/rb/new` · **Edition:** Pro+
+The runbook builder lets you define a named, ordered sequence of operational steps. Each step has a specific type and configuration, allowing you to automate a wide range of tasks from health checks to incident remediation.
 
-The runbook builder lets you define a named, ordered sequence of steps. Each step has a type and a type-specific configuration.
+## How to Access
 
+Navigate to **Runbook Portal** and click **+ New Runbook**, or click **Edit** on an existing runbook card.
 
-## Basic fields
+## Step 1: Define Basic Information
+
+Start by filling in the runbook details:
 
 | Field | Description |
 |-------|-------------|
-| Name | Unique runbook name (required) |
-| Description | What this runbook does |
-| Tags | Comma-separated tags for filtering and AI matching |
+| Name | A unique name for the runbook |
+| Description | A summary of what this runbook does |
+| Tags | Comma-separated tags for filtering and AI matching (e.g., `kubernetes`, `database`) |
 
-## Triggers
+![Runbook builder showing basic information and step list](/screenshots/runbook-builder.png)
 
-Runbooks can be triggered manually, from the AI Chat, or via a webhook URL. Add a trigger to expose a `POST /api/runbooks/:id/webhook` endpoint with a secret token.
+## Step 2: Configure Triggers
 
-## Steps
+Runbooks can be triggered in several ways:
 
-Each step has:
-- **Order** — execution sequence (drag to reorder)
-- **Name** — label shown in execution output
-- **Type** — one of the supported step types below
+- **Manual** -- run directly from the Runbooks page
+- **AI Chat** -- the AI assistant can suggest and execute the runbook based on natural language queries
+- **Webhook** -- expose the runbook as a webhook endpoint with a secret token for external automation
 
-### Step types
+Select the appropriate trigger types for your use case.
 
-| Type | What it does |
+## Step 3: Add Steps
+
+Click **+ Add Step** to add a new step to the runbook. Each step requires:
+
+- **Order** -- the execution sequence (drag to reorder)
+- **Name** -- a label that appears in the execution output
+- **Type** -- one of the supported step types
+
+### Available Step Types
+
+| Type | What It Does |
 |------|-------------|
-| **HTTP** | Make an HTTP request (GET/POST/PUT/DELETE/PATCH) to any URL |
-| **Jira** | Create an issue, add a comment, or search tickets |
-| **Slack** | Post a message to a Slack channel |
-| **Shell** | Run a shell command on the server |
-| **MCP** | Call a tool on a configured MCP server |
-| **Condition** | Branch execution based on a previous step's output |
+| **HTTP** | Makes an HTTP request to any URL (supports GET, POST, PUT, DELETE, and PATCH methods) |
+| **Jira** | Creates an issue, adds a comment, or searches tickets in your connected Jira instance |
+| **Slack** | Posts a message to a specified Slack channel |
+| **Shell** | Runs a shell command on the server |
+| **MCP** | Calls a tool on a configured MCP server |
+| **Condition** | Branches execution based on a previous step's output |
 
-### HTTP step config
+For each step, fill in the type-specific configuration fields such as the target URL, command, message content, or condition logic.
 
-```
-Method:          GET | POST | PUT | DELETE | PATCH
-URL:             https://api.example.com/health
-Headers:         { "Authorization": "Bearer {{token}}" }
-Body:            (JSON, for POST/PUT)
-Timeout:         30 seconds
-Expected status: 200
-```
+![Step configuration showing type selection and type-specific fields](/screenshots/runbook-step-config.png)
 
-### Shell step config
+## Step 4: Review Safety Validation
 
-```
-Command:  kubectl get pods -n production
-Timeout:  60 seconds
-Env:      { "KUBECONFIG": "/etc/kubeconfig" }
-```
+After adding or modifying steps, Krado One automatically re-evaluates the runbook's risk level and displays a color-coded alert:
 
-## Safety validation
+- **Safe** (green) -- only read operations
+- **Warning** (yellow) -- includes write operations
+- **Dangerous** (red) -- includes destructive operations
 
-After adding or changing any step, the platform re-evaluates the runbook's risk level and shows a coloured alert. For **Dangerous** runbooks you must acknowledge the risk before saving.
+For runbooks classified as **Dangerous**, you must explicitly acknowledge the risk before saving.
+
+## Step 5: Save the Runbook
+
+Click **Save** to finalize the runbook. It will immediately appear in the runbooks list and be available for execution.

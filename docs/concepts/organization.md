@@ -1,52 +1,70 @@
 ---
-title: "Organizations and First-Time Setup"
-description: "How multi-organization support works and how to bootstrap your first Krado One organization."
+title: "Organizations"
+description: "Understand how organizations work in Krado One, complete the first-time setup wizard, and manage multiple organizations."
 ---
 
-# Organizations and first-time setup
+# Organizations
 
-## Multi-organization
+An **organization** in Krado One is the top-level container for everything your team does. All users, roles, integrations, and portal data belong to an organization. Think of it as your company's workspace within the platform.
 
-Enterprise supports **many organizations**. The first org is usually created during **setup**; admins can add more with **`POST /api/admin/orgs`**.
+When you first install Krado One, you'll create your initial organization as part of the setup wizard. From that point on, every user you invite and every integration you configure lives inside that organization.
 
-## Bootstrap API
+---
 
-| Method | Path | Purpose |
-|--------|------|--------|
-| `GET` | `/api/setup` | Returns JSON with boolean `needs_setup` |
-| `POST` | `/api/setup` | Creates **org** + **owner user**; returns access and refresh tokens |
+## First-time setup wizard
 
-### `POST /api/setup` body
+The first time you open Krado One after installation, the setup wizard walks you through creating your organization and your first admin account.
 
-Both **`org`** and **`user`** are **required**:
+### Step 1 -- Create your organization
 
-```json
-{
-  "org": {
-    "name": "Acme Corp",
-    "slug": "acme",
-    "plan": "free"
-  },
-  "user": {
-    "username": "admin",
-    "email": "admin@example.com",
-    "password": "at-least-6-chars"
-  }
-}
-```
+Enter a name and URL-friendly slug for your organization. The slug is used in URLs and cannot be changed later, so choose carefully.
 
-(Field names must match your API model — see `CreateOrgRequest` in the backend.)
+| Field | Description |
+|-------|-------------|
+| Organization Name | A human-readable name (e.g. "Acme Corp") |
+| Slug | A short, URL-safe identifier (e.g. "acme") |
+| Plan | The edition tier to start with (Free by default) |
 
-## Org admin API
+![Setup wizard step 1 — create your organization](/screenshots/setup-wizard-step-1.png)
 
-| Method | Path | Purpose |
-|--------|------|--------|
-| `GET` | `/api/admin/orgs` | List organizations |
-| `POST` | `/api/admin/orgs` | Create organization |
-| `PUT` | `/api/admin/orgs/{id}` | Update org |
-| `DELETE` | `/api/admin/orgs/{id}` | Delete org (subject to server rules) |
-| `GET` | `/api/admin/orgs/{id}/users` | Users in org |
+### Step 2 -- Create the owner account
 
-## Assigning users
+Next, create the first user account. This account is automatically assigned the **Owner** role with full administrative privileges.
 
-**`PUT /api/admin/users/{id}/org`** with body `{ "org_id": <id> }` moves a user between orgs where allowed by your policies.
+| Field | Description |
+|-------|-------------|
+| Username | Your login username |
+| Email | Your email address |
+| Password | A strong password (minimum 6 characters) |
+
+![Setup wizard step 2 — create the owner account](/screenshots/setup-wizard-step-2.png)
+
+Once both steps are complete, you're logged in and ready to start configuring your platform.
+
+---
+
+## Organization settings
+
+After setup, you can manage your organization's details from **Portal Config → Organization**.
+
+From this page you can:
+
+- Update the organization name
+- View your organization slug and plan
+- See the organization owner
+
+![Organization settings page](/screenshots/organization-settings.png)
+
+---
+
+## Managing multiple organizations (Enterprise)
+
+Multi-organization support is available on the **Enterprise** tier. This is useful for companies that need separate workspaces for different business units, clients, or environments.
+
+With multi-org support, platform administrators can:
+
+- Create additional organizations from the admin panel
+- Move users between organizations
+- Manage each organization's settings, roles, and integrations independently
+
+If you need multi-organization support, see the [Editions](./editions) page for details on upgrading to Enterprise.

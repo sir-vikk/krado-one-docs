@@ -1,33 +1,56 @@
 ---
 title: "Compliance"
-description: "Map security controls against SOC 2, ISO 27001, and GDPR frameworks with evidence tracking and audit readiness."
+description: "Map security controls against SOC 2, ISO 27001, and GDPR frameworks with evidence tracking and audit readiness in Krado One."
 ---
 
 # Compliance
 
-**Route:** `/security/compliance` · **Edition:** Pro+ · **Beta**
+The Compliance module lets you map your security controls against industry frameworks such as SOC 2, ISO 27001, and GDPR. Track which controls are in place, which need work, and attach evidence to demonstrate audit readiness.
 
-The Compliance module lets you map your security controls against industry frameworks like **SOC 2**, **ISO 27001**, and **GDPR**. Track which controls pass, which are in progress, and attach evidence to each.
+## How to Access
 
+Navigate to **Security Portal > Compliance** from the left sidebar.
 
-## Frameworks
+## Selecting a Framework
 
-Select a compliance framework from the list. Each framework comes pre-loaded with its standard control categories and individual controls.
+1. Open the Compliance page.
+2. Select a compliance framework from the list. Each framework comes pre-loaded with its standard control categories and individual controls.
+3. The framework view displays all controls organized by category.
 
-## Control statuses
+## Updating Control Statuses
+
+Each control can be set to one of the following statuses:
 
 | Status | Meaning |
 |--------|---------|
-| Not Started | Control not yet assessed |
-| In Progress | Work underway to implement or document |
-| Compliant | Control is met and evidenced |
-| Non-Compliant | Control gap identified |
-| Not Applicable | Control does not apply to this system |
+| **Not Started** | The control has not yet been assessed |
+| **In Progress** | Work is underway to implement or document the control |
+| **Compliant** | The control is met and supported by evidence |
+| **Non-Compliant** | A gap has been identified for this control |
+| **Not Applicable** | The control does not apply to your system |
 
-## Evidence
+To update a control's status:
 
-Attach evidence to each control — document links, screenshots, policy references, or free-text notes. Evidence helps auditors verify compliance without additional back-and-forth.
+1. Click the control to open its detail view.
+2. Select the new status from the dropdown.
+3. Optionally add notes explaining the assessment.
+4. Click **Save**.
 
-## Progress tracking
+## Attaching Evidence
 
-The framework overview shows a progress bar — percentage of controls in Compliant status — so you can track readiness for an audit at a glance.
+Evidence helps auditors verify compliance without additional back-and-forth. For each control:
+
+1. Open the control detail view.
+2. Click **+ Add Evidence**.
+3. Attach one or more items:
+    - Document links (e.g., policy documents, architecture diagrams)
+    - Screenshots
+    - Policy references
+    - Free-text notes explaining how the control is satisfied
+4. Save the evidence.
+
+## Tracking Audit Readiness
+
+The framework overview displays a progress bar showing the percentage of controls in Compliant status. Use this to track your readiness for an upcoming audit and identify areas that still need attention.
+
+![Compliance framework view showing controls, statuses, and progress tracking](/screenshots/security-compliance.png)

@@ -1,31 +1,46 @@
 ---
 title: "Products"
-description: "Track customer-facing services and applications, link them to incidents, and monitor impact."
+description: "Register and manage customer-facing products, link them to incidents, and view product-level impact history in Krado One."
 ---
 
 # Products
 
-**Route:** `/drm/products` · **Edition:** Community+
+Products represent the customer-facing services or applications your organization owns. By registering products in Krado One and linking them to incidents, you can track impact across your portfolio, generate targeted communications, and identify which products are most frequently affected.
 
-Products represent the customer-facing services or applications your team owns. Linking incidents to products makes it easy to track impact, generate customer-facing communications, and identify which products are most affected.
+## How to Access
 
+Navigate to **DRM Portal > Products** from the left sidebar.
 
-## Product fields
+## Registering a Product
 
-| Field | Description |
-|-------|-------------|
-| Name | Product display name |
-| Description | What the product does |
-| Services | Internal services that make up this product |
-| Users | Team members who manage this product |
+1. Click **+ Add Product** at the top of the products list.
+2. Fill in the product details:
 
-## Linking to incidents
+    | Field | Description |
+    |-------|-------------|
+    | Name | The product display name |
+    | Description | A brief summary of what the product does |
+    | Services | The internal services that make up this product |
+    | Users | Team members responsible for managing the product |
 
-When creating or editing an incident, select one or more products from the **Affected Products** picker. This automatically populates the incident's customer impact section and makes the product appear in filtered views.
+3. Click **Save** to register the product.
 
-## Product detail
+## Linking Products to Incidents
 
-Clicking a product shows:
-- All incidents that have affected this product (with severity and status)
-- The internal services mapped to it
+When creating or editing an incident, use the **Affected Products** picker to select one or more products. This automatically:
+
+- Populates the incident's customer impact section
+- Makes the product appear in filtered incident views
+- Builds a history of incidents associated with each product
+
+## Viewing Product Incident History
+
+Click any product in the list to open its detail page. Here you can view:
+
+- All incidents that have affected this product, including their severity and current status
+- The internal services mapped to the product
 - The product owner(s)
+
+Use this view to identify patterns, spot recurring issues, and prioritize reliability improvements for your most impacted products.
+
+![Products list with incident history and linked services](/screenshots/drm-products.png)

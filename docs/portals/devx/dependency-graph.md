@@ -1,30 +1,49 @@
 ---
 title: "Dependency Graph"
-description: "Interactive node graph showing all services and their upstream/downstream dependencies — fastest way to understand blast radius."
+description: "Visualize all services and their upstream and downstream dependencies in an interactive graph to understand blast radius in Krado One."
 ---
 
 # Dependency Graph
 
-**Route:** `/dependency-graph` · **Edition:** Community+
+The Dependency Graph renders all services from your catalog as an interactive node graph, with edges showing upstream and downstream relationships. It is the fastest way to understand the blast radius of a change or incident.
 
-The Dependency Graph renders all services from the catalog as an interactive node graph, with edges showing upstream and downstream dependencies. It's the fastest way to understand blast radius during an incident.
+## How to Access
 
+Navigate to **DevX Portal > Dependency Graph** from the left sidebar.
 
-## How to use
+## Interacting with the Graph
 
-- **Pan** — click and drag on the canvas
-- **Zoom** — scroll wheel or pinch
-- **Select service** — click a node to highlight it and its direct dependencies
-- **Open service** — double-click a node to navigate to the service detail page
+The graph supports the following interactions:
 
-## Node colours
+| Action | How |
+|--------|-----|
+| Pan | Click and drag on the canvas |
+| Zoom | Use the scroll wheel or pinch gesture |
+| Select a service | Click a node to highlight it and its direct dependencies |
+| Open service detail | Double-click a node to navigate to that service's detail page |
 
-Nodes are colour-coded by scorecard health grade:
-- Green — A/B grade
-- Yellow — C grade
-- Red — D/F grade
-- Grey — not yet scored
+## Understanding the Color Coding
 
-## Populating the graph
+Nodes in the graph are color-coded based on their scorecard health grade:
 
-Dependencies are set per-service in the **Service Detail → Dependencies** tab. Select upstream services (things this service calls) and the graph updates automatically.
+| Color | Meaning |
+|-------|---------|
+| Green | The service has an A or B health grade |
+| Yellow | The service has a C health grade |
+| Red | The service has a D or F health grade |
+| Grey | The service has not been scored yet |
+
+This color coding lets you quickly identify services that may be at higher risk due to gaps in documentation, ownership, or operational readiness.
+
+## Populating the Graph
+
+Dependencies are configured per service in the **Service Detail > Dependencies** tab. To add dependencies:
+
+1. Open a service from the Service Catalog.
+2. Navigate to the **Dependencies** tab.
+3. Select the upstream services that this service calls.
+4. Save your changes.
+
+The graph updates automatically as dependencies are added or removed.
+
+![Interactive dependency graph with color-coded service nodes](/screenshots/devx-dependency-graph.png)

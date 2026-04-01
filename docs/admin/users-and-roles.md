@@ -1,39 +1,55 @@
 ---
 title: "Users, Roles, and Permissions"
-description: "Role-based access control (RBAC) for Krado One — built-in roles, custom roles, and fine-grained portal permissions."
+description: "Manage users and configure role-based access control (RBAC) in Krado One."
 ---
 
-# Users, roles, and permissions
+# Users, Roles, and Permissions
 
-DevX uses role-based access control (RBAC). Every user has a role that defines which portals they can access and what they can do inside each one.
+Krado One uses role-based access control (RBAC) to manage what each user can see and do. Every user is assigned a role that determines which portals they can access and whether they have read-only or read-write privileges.
 
-**Configure in:** Portal Config → Users / Roles & Permissions
+All user and role management is done from **Portal Config → Users** and **Portal Config → Roles & Permissions**.
 
 ---
 
 ## Built-in roles
 
+Krado One ships with three built-in roles that cover the most common access patterns:
+
 | Role | Description |
 |------|-------------|
-| **admin** | Full access to all portals and Portal Config |
-| **developer** | Access to Task, DRM, DevX, Runbook, and Platform portals (read + write) |
-| **viewer** | Read-only access to portals they are granted access to |
+| **Admin** | Full access to all portals and Portal Config settings |
+| **Developer** | Read and write access to Task, DRM, DevX, Runbook, and Platform portals |
+| **Viewer** | Read-only access to portals they are granted access to |
 
-Built-in roles cannot be deleted but their descriptions can be edited.
+Built-in roles cannot be deleted, but their descriptions can be edited.
 
 ---
 
 ## Custom roles
 
-Go to **Portal Config → Roles & Permissions → New Role**.
+If the built-in roles don't match your team's needs, you can create custom roles with fine-grained permissions.
+
+To create a custom role:
+
+1. Go to **Portal Config → Roles & Permissions**
+2. Click **New Role**
+3. Give the role a name and description
+4. Configure the permissions described below
+5. Save the role
+
+![Roles and permissions page](/screenshots/roles-permissions.png)
+
+![Custom role creation form](/screenshots/custom-role-creation.png)
 
 ### System permissions
 
+These control platform-wide capabilities:
+
 | Permission | Description |
-|-----------|-------------|
-| `portal_access` | Can log in. Disable to create reference-only roles |
-| `manage_users` | Can create, edit, and delete users |
-| `manage_config` | Can access Portal Config |
+|------------|-------------|
+| Portal Access | Can log in to the platform. Disable to create reference-only roles |
+| Manage Users | Can create, edit, and delete users |
+| Manage Config | Can access Portal Config |
 
 ### Portal access flags
 
@@ -41,87 +57,78 @@ Control which portals this role can enter:
 
 | Flag | Portal |
 |------|--------|
-| `access_tasks` | Task Management |
-| `access_drm` | DRM Portal |
-| `access_idp` | DevX Portal |
-| `access_runbooks` | Runbook Portal |
-| `access_cloud` | Cloud & FinOps |
-| `access_security` | Security & Compliance |
-| `access_platform` | Platform Engineering |
+| Access Tasks | Task Management |
+| Access DRM | DRM Portal |
+| Access DevX | DevX Portal |
+| Access Runbooks | Runbook Portal |
+| Access Cloud | Cloud and FinOps |
+| Access Security | Security and Compliance |
+| Access Platform | Platform Engineering |
 
 ### Write access flags
 
-Control whether the role can create/edit/delete within each portal:
+Control whether the role can create, edit, and delete within each portal:
 
 | Flag | Portal |
 |------|--------|
-| `write_tasks` | Task Management |
-| `write_drm` | DRM Portal |
-| `write_idp` | DevX Portal |
-| `write_runbooks` | Runbook Portal |
-| `write_cloud` | Cloud & FinOps |
-| `write_security` | Security & Compliance |
-| `write_platform` | Platform Engineering |
+| Write Tasks | Task Management |
+| Write DRM | DRM Portal |
+| Write DevX | DevX Portal |
+| Write Runbooks | Runbook Portal |
+| Write Cloud | Cloud and FinOps |
+| Write Security | Security and Compliance |
+| Write Platform | Platform Engineering |
 
 ### Resource-level permissions
 
-Fine-grained `view / create / edit / delete` control per resource:
+For even more control, you can set view, create, edit, and delete permissions on specific resource types:
 
 | Resource | Description |
 |----------|-------------|
-| `tasks` | Task records |
-| `drm` | Incidents and DRM catalog |
-| `service_catalog` | Service Catalog entries (DevX) |
-| `runbooks` | Runbook definitions and executions |
-| `cloud` | Cloud resources and FinOps data |
-| `security` | Vulnerabilities, secrets, compliance |
-| `platform` | Platform Engineering resources |
+| Tasks | Task records |
+| DRM | Incidents and DRM catalog entries |
+| Service Catalog | Service Catalog entries in the DevX portal |
+| Runbooks | Runbook definitions and executions |
+| Cloud | Cloud resources and FinOps data |
+| Security | Vulnerabilities, secrets, and compliance data |
+| Platform | Platform Engineering resources |
 
 ---
 
-## Users
+## Managing users
 
-### Creating a user
+### Viewing users
 
-Go to **Portal Config → Users → Add User**. Fields:
+Go to **Portal Config → Users** to see a list of all users in your organization. The list shows each user's name, email, role, and team assignment.
+
+![Users list page](/screenshots/users-list.png)
+
+### Adding a user
+
+Click **Add User** from the Users page and fill in the following fields:
 
 | Field | Description |
 |-------|-------------|
-| Username | Login username (unique) |
-| Email | User email address |
-| Password | Initial password |
+| Username | Login username (must be unique within the organization) |
+| Email | User's email address |
+| Password | An initial password for the user |
 | Role | Assign a built-in or custom role |
 | Team | Assign to a DRM/catalog team (optional) |
 
-The org is automatically set from the logged-in admin's organization.
+The user is automatically added to your current organization.
 
-### Org owner
+![Add user form](/screenshots/add-user-form.png)
 
-The user who completes the first-time setup wizard is marked as **Org Owner**. Org owners are displayed with a badge in the Users list.
+### Organization owner
+
+The user who completes the first-time setup wizard is marked as the **Organization Owner**. Org owners are displayed with a badge in the Users list and have full administrative privileges.
 
 ### Password reset
 
-Admins can generate a password reset link from the user row (**⋯ → Send reset link**). The link is emailed to the user and expires after 24 hours.
+Admins can send a password reset link to any user. From the Users list, click the menu on the user's row and select **Send reset link**. The link is emailed to the user and expires after 24 hours.
 
 ---
 
 ## SSO
 
-Enterprise builds support SSO provider configuration. See [SSO](./sso).
-
----
-
-## API reference
-
-| Method | Path | Description |
-|--------|------|-------------|
-| `GET` | `/api/users` | List users |
-| `POST` | `/api/users` | Create user |
-| `PUT` | `/api/users/:id` | Update user |
-| `DELETE` | `/api/users/:id` | Delete user |
-| `PUT` | `/api/users/:id/team` | Assign team |
-| `POST` | `/api/auth/reset-password` | Request password reset |
-| `GET` | `/api/admin/roles` | List roles |
-| `POST` | `/api/admin/roles` | Create role |
-| `PUT` | `/api/admin/roles/:id` | Update role |
-| `DELETE` | `/api/admin/roles/:id` | Delete role |
+Pro and Enterprise editions support Single Sign-On, allowing users to log in with their existing identity provider. See the [SSO guide](./sso) for setup instructions.

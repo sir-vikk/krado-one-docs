@@ -1,31 +1,40 @@
 ---
-title: "Reports & AI Summaries"
-description: "Generate AI-written summaries of incidents over a selected time range for briefings and postmortems."
+title: "Reports and AI Summaries"
+description: "Generate AI-powered incident reports over a selected time range for executive briefings, postmortems, and customer communications in Krado One."
 ---
 
-# Reports & AI Summaries
+# Reports and AI Summaries
 
-**Route:** `/drm/reports` · **Edition:** Community+  (AI generation requires OpenAI config)
+The Reports section generates human-readable summaries of your incidents over a selected time range. Powered by AI, these reports can be used as executive briefings, postmortem starters, or the basis for customer communications.
 
-The Reports section generates human-readable summaries of incidents over a selected time range. Summaries are written by an AI assistant and can be used as executive briefings, postmortem starters, or customer communications.
+## How to Access
 
+Navigate to **DRM Portal > Reports** from the left sidebar.
 
-## Generating a summary
+## Generating a Report
 
-1. Select a date range (e.g. "last 7 days" or a custom range)
-2. Click **Preview** to see which incidents will be included
-3. Click **Generate** — the AI analyses all matched incidents and writes a structured report
-4. The report is saved and appears in the summaries list
+1. Select a **date range** using the date picker. You can choose a preset range (e.g., "Last 7 days") or specify a custom start and end date.
+2. Click **Preview** to see which incidents fall within the selected range.
+3. Review the list of matched incidents to confirm the scope of your report.
+4. Click **Generate** to create the AI-powered summary.
+5. The generated report is saved automatically and appears in the reports list for future reference.
 
-## Summary content
+## What a Report Contains
 
-A generated summary typically includes:
-- Total incident count by severity
-- Top affected products
-- Notable incidents with brief descriptions
-- Common root causes and themes
-- Recommended preventive actions
+A generated report typically includes the following sections:
 
-## Configuration
+- **Incident count by severity** -- a breakdown of how many Critical, High, Medium, and Low incidents occurred
+- **Top affected products** -- which products experienced the most impact
+- **Notable incidents** -- brief descriptions of the most significant events
+- **Common root causes and themes** -- patterns identified across multiple incidents
+- **Recommended preventive actions** -- suggestions to reduce future incidents
 
-AI summaries use the OpenAI connection configured under **Portal Config → AI Settings**. If no AI config is present, the Generate button is disabled and a prompt to configure it is shown.
+## Interpreting Your Results
+
+Use the report to identify trends and recurring problems. If a specific product or root cause appears repeatedly, consider scheduling focused remediation work or updating your runbooks to address the pattern.
+
+## Prerequisites
+
+AI-powered report generation requires an OpenAI connection configured under **Portal Config > AI Settings**. If no AI configuration is present, the Generate button will be disabled and a prompt to configure it will be displayed.
+
+![Reports page showing date range selection and generated AI summary](/screenshots/drm-reports.png)
